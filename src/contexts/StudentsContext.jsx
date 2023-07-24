@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { useLocalStorage } from "react-use";
 
 const initialStudentsData = [
     {
@@ -18,7 +19,7 @@ const initialStudentsData = [
     }
 ]
 
-const studentsReducer = (previousState.instructions) => {
+const studentsReducer = (previousState, instructions) => {
     let stateEditable = [...previousState]
 
     switch (instructions.type){
@@ -35,9 +36,10 @@ const studentsReducer = (previousState.instructions) => {
             console.log("TODO: Sort students by alphabetical order")
             break;
         default:
-            console.log("Invalid instruction type provided, it was" + instruction.type)
+            console.log("Invalid instruction type provided, it was" + instructions.type)
             return previousState
     }
+}
 
     export const StudentDataContext = createContext(null)
     export const StudentDispatchContext = createContext(null)
@@ -50,9 +52,27 @@ const studentsReducer = (previousState.instructions) => {
         return useContext(StudentDispatchContext)
     }
 
+//  StudentssProvider wraps around the component tree. 
+//  Any child component has access to this note data via useStudentData and useStudentDispatch.
     export default function StudentsProvider(props){
         const [studentsData, studentDispatch] = useReducer(studentsReducer, initialStudentsData)
-    }
+
+        const [persistentData, setPersistentData] = useLocalStorage('students', initialStudentsData)
+
+        // useEffect(() => {
+        //     // On app start, overwrite notesData with persistentData 
+        //     studentsDispatch({type:"setup", data: persistentData});
+        // }, []);
+
+        // confirm that our local storage is updating
+        useEffect(() => {
+            console.log("Local Storage: " + persistentData)
+        }, [persistentData])
+
+        // Autosave any changes to students from reducer state into localstorage
+        useEffect(() => {
+            setPersistentData(studentsData)
+        }, [studentsData])
 
         return (
             <StudentDataContext.Provider value={studentsData}>
