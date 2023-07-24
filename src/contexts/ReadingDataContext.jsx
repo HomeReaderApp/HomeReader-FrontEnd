@@ -59,7 +59,8 @@ const readingDataReducer = (previousState, instructions) => {
 
         useEffect(() => {
             // On app start, overwrite readingData with persistentData 
-            readindDataDispatch({type:"setup", data: persistentData});
+            readingDataDispatch({type:"setup", data: persistentData});
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
         // confirm that our local storage is updating
@@ -70,6 +71,7 @@ const readingDataReducer = (previousState, instructions) => {
         // Autosave any changes to students from reducer state into localstorage
         useEffect(() => {
             setPersistentData(readingData)
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [readingData])
 
         return (
