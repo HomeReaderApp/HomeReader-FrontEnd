@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import StudentsProvider from './contexts/StudentsContext';
+import ReadingDataProvider from './contexts/ReadingDataContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    {/* Need to check order of these providers */}
+      <StudentsProvider>
+        <ReadingDataProvider>
+          <App />
+        </ReadingDataProvider>
+      </StudentsProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
