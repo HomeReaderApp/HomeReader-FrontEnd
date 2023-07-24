@@ -4,18 +4,11 @@ import { useLocalStorage } from "react-use";
 const initialStudentsData = [
     {
         id: 1,
-        firstName: "Nicole",
-        lastName: "Hulett",
+        firstName: "First name",
+        lastName: "Second name",
         yearLevel: "1",
         loginCode: "123456",
-        // not sure if we need this yet
-        readingData: [{
-            bookName: "Harry Potter",
-            rating: 5,
-            comments: "Great reading",
-            createdAtDate: Date.now(),
-            // student: 1
-        }]
+        // readingData: []
     }
 ]
 
@@ -23,9 +16,17 @@ const studentsReducer = (previousState, instructions) => {
     let stateEditable = [...previousState]
 
     switch (instructions.type){
+        case "setup":
+            console.log("Apply persistent data to state now")
+            stateEditable = instructions.data
+            return stateEditable
+
         case "create":
             console.log("TODO: Create student and add to state")
-            break;
+            let newStudent = instructions.newStudent
+            stateEditable.push(newStudent)
+            return stateEditable
+
         case "update":
             console.log("TODO: Update specific student and update state")
             break;
@@ -55,14 +56,15 @@ const studentsReducer = (previousState, instructions) => {
 //  StudentssProvider wraps around the component tree. 
 //  Any child component has access to this note data via useStudentData and useStudentDispatch.
     export default function StudentsProvider(props){
-        const [studentsData, studentDispatch] = useReducer(studentsReducer, initialStudentsData)
+        const [studentsData, studentsDispatch] = useReducer(studentsReducer, initialStudentsData)
 
         const [persistentData, setPersistentData] = useLocalStorage('students', initialStudentsData)
 
-        // useEffect(() => {
-        //     // On app start, overwrite notesData with persistentData 
-        //     studentsDispatch({type:"setup", data: persistentData});
-        // }, []);
+        useEffect(() => {
+            // On app start, overwrite notesData with persistentData 
+            studentsDispatch({type:"setup", data: persistentData});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
         // confirm that our local storage is updating
         useEffect(() => {
@@ -72,11 +74,12 @@ const studentsReducer = (previousState, instructions) => {
         // Autosave any changes to students from reducer state into localstorage
         useEffect(() => {
             setPersistentData(studentsData)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [studentsData])
 
         return (
             <StudentDataContext.Provider value={studentsData}>
-                <StudentDispatchContext.Provider value={studentDispatch}>
+                <StudentDispatchContext.Provider value={studentsDispatch}>
                     {props.children}
                 </StudentDispatchContext.Provider>
             </StudentDataContext.Provider>
