@@ -18,7 +18,8 @@ const studentsReducer = (previousState, instructions) => {
     switch (instructions.type){
         case "setup":
             console.log("Apply persistent data to state now")
-            stateEditable = instructions.data
+            let localStorageData = instructions.data
+            stateEditable = localStorageData
             return stateEditable
 
         case "create":
@@ -53,15 +54,15 @@ const studentsReducer = (previousState, instructions) => {
         return useContext(StudentDispatchContext)
     }
 
-//  StudentssProvider wraps around the component tree. 
-//  Any child component has access to this note data via useStudentData and useStudentDispatch.
+//  StudentsProvider wraps around the component tree. 
+//  Any child component has access to this student data via useStudentData and useStudentDispatch.
     export default function StudentsProvider(props){
         const [studentsData, studentsDispatch] = useReducer(studentsReducer, initialStudentsData)
 
         const [persistentData, setPersistentData] = useLocalStorage('students', initialStudentsData)
 
         useEffect(() => {
-            // On app start, overwrite notesData with persistentData 
+            // On app start, overwrite studentData with persistentData 
             studentsDispatch({type:"setup", data: persistentData});
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);

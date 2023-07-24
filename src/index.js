@@ -5,14 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import StudentsProvider from './contexts/StudentsContext';
+import ReadingDataProvider from './contexts/ReadingDataContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    {/* Need to check order of these providers */}
       <StudentsProvider>
-        <App />
+        <ReadingDataProvider>
+          <App />
+        </ReadingDataProvider>
       </StudentsProvider>
     </BrowserRouter>
   </React.StrictMode>
