@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import TeacherLogin from "./pages/TeacherLogin";
 
 
 function App() {
   return (
     <div className="App">
-      <h1>HomeReader app coming soon...</h1>
-      <p>A place for teachers and parents to communicate</p>
       <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} /> 
-        <Route path="/teacher/login" element={<h1>Login</h1>} /> 
+        <Route path="/" element={<Homepage />} /> 
+        <Route path="/teacher/login" element={<TeacherLogin />} /> 
         <Route path="/teacher/register" element={<h1>Register</h1>} /> 
         <Route path="/student/login" element={<h1>Student Login</h1>} /> 
         <Route path="/student/:studentID/reading-form" element={<h1>Student reading form</h1>} /> 
