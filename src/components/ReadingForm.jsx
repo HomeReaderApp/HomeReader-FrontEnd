@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { decodeAuthToken } from '../utils/DecodeTokens';
 
@@ -8,6 +8,23 @@ export default function ReadingForm() {
   const [rating, setRating] = useState('');
   const [comments, setComments] = useState('');
   const [submissionMessage, setSubmissionMessage] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [studentID, setStudentID] = useState('')
+
+  useEffect(() => {
+    // When the component mounts, try to retrieve the token from localStorage
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+      try {
+        const decodedToken = decodeAuthToken(token);
+        setFirstName(decodedToken.firstName);
+        setStudentID(decodedToken.studentID);
+      } catch (error) {
+        console.error('Error decoding the token:', error);
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,13 +34,8 @@ export default function ReadingForm() {
       if (!token) {
         throw new Error('Authentication token not found. Please log in.');
       }
-
-      const decoded = decodeAuthToken(token)
-      // const studentId = decoded.user_id;
-      console.log(decoded.user_id)
     
-
-      const response = await fetch(`http://localhost:3001/${decoded.user_id}/submit-reading-form`, {
+      const response = await fetch(`http://localhost:3001/${studentID}/submit-reading-form`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,6 +65,7 @@ export default function ReadingForm() {
 
   return (
     <div>
+      <h1>Welcome {firstName}</h1>
       <h2>Submit Reading Form</h2>
       <form onSubmit={handleSubmit}>
         <div>
