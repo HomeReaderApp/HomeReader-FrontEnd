@@ -6,6 +6,6 @@ export function saveAuthToken(token){
 };
 
 export function decodeAuthToken(token){
-  return jwt_decode(token);
-  // const {firstName, lastName, studentID } = jwt_decode(token)
+  const {firstName, studentID } = jwt_decode(token)
+  return {firstName, studentID}
 }

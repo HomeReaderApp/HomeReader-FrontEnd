@@ -18,11 +18,12 @@ export default function ReadingForm() {
         throw new Error('Authentication token not found. Please log in.');
       }
 
-      const decoded = decodeAuthToken(token);
-      const studentId = decoded.user_id;
+      const decoded = decodeAuthToken(token)
+      // const studentId = decoded.user_id;
+      console.log(decoded.user_id)
     
 
-      const response = await fetch(`http://localhost:3001/student/${studentId}/submit-reading-form`, {
+      const response = await fetch(`http://localhost:3001/${decoded.user_id}/submit-reading-form`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
