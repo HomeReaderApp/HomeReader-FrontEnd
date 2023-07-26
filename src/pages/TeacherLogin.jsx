@@ -31,10 +31,9 @@ export default function TeacherLogin(props){
           if (response.ok) {
             if (data.token) {
               // Save the token to localStorage 
-              
               localStorage.setItem('token', data.token);
     
-              navigate('/teacher/portal')
+              navigate('/teacher/:teacherId/portal')
             }
           } else {
             setError(data.error);

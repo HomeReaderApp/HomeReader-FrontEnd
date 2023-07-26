@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import jwt from 'jsonwebtoken'
-import jwt_decode from "jwt-decode";
+import {saveAuthToken, decodeAuthToken} from '../utils/DecodeTokens'
 
 export default function StudentLogin() {
   const [studentLoginCode, setStudentLoginCode] = useState('');
   const [studentLastName, setStudentLastName] = useState('');
   const navigate = useNavigate();
-
-  const saveAuthToken = (token) => {
-    // Save the token to local storage
-    localStorage.setItem('authToken', token);
-  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -34,15 +28,13 @@ export default function StudentLogin() {
       }
 
       const data = await response.json();
-      // console.log(data)
       const { firstName, lastName, token } = data;
 
-      const studentToken = token
-      saveAuthToken(studentToken);
-      const decoded = jwt_decode(token);
-      console.log(decoded.user_id); 
+      // Save token to local storage and then decode token to get studentID
+      saveAuthToken(token)
+      const decoded = decodeAuthToken(token)
 
-      // Redirect to another page 
+      // Redirect to another page using user_id as param
       navigate(`/student/${decoded.user_id}/reading-form`); 
 
     } catch (error) {
