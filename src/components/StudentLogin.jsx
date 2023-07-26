@@ -11,7 +11,7 @@ export default function StudentLogin() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/student-user/login', {
+      const response = await fetch('http://localhost:3001/student/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

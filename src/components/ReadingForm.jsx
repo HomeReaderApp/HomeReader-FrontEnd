@@ -20,6 +20,7 @@ export default function ReadingForm() {
 
       const decoded = decodeAuthToken(token);
       const studentId = decoded.user_id;
+    
 
       const response = await fetch(`http://localhost:3001/student/${studentId}/submit-reading-form`, {
         method: 'POST',
