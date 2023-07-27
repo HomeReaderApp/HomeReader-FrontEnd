@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import CreateClassForm from './CreateClass';
+import { Link } from 'react-router-dom';
 
 export default function TeacherClasses() {
   const [classes, setClasses] = useState([]);
@@ -62,7 +63,9 @@ export default function TeacherClasses() {
       ) : (
         <ul>
           {classes.map((teacherClass) => (
-            <li key={teacherClass._id}>{teacherClass.className}</li>
+            <li key={teacherClass._id}>
+            <Link to={`/teacher/classlist/${teacherClass._id}/add-student`}>{teacherClass.className}</Link>
+          </li>
           ))}
         </ul>
       )}
