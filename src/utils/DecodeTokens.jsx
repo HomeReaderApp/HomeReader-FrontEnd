@@ -5,7 +5,16 @@ export function saveAuthToken(token){
   localStorage.setItem('authToken', token);
 };
 
+export function getAuthToken(){
+  return localStorage.getItem('authToken')
+}
+
+export function decodeTeacherToken(token){
+  const {username, user_id} = jwt_decode(token)
+  return {username, user_id}
+}
+
 export function decodeAuthToken(token){
-  const {firstName, studentID } = jwt_decode(token)
-  return {firstName, studentID}
+  const {firstName, user_id } = jwt_decode(token)
+  return {firstName, user_id}
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
+import { saveAuthToken, decodeTeacherToken } from "../utils/DecodeTokens";
 
 
 export default function TeacherLogin(props){
@@ -31,9 +32,10 @@ export default function TeacherLogin(props){
           if (response.ok) {
             if (data.token) {
               // Save the token to localStorage 
-              localStorage.setItem('token', data.token);
+              saveAuthToken(data.token)
+              const decoded = decodeTeacherToken(data.token)
     
-              navigate('/teacher/:teacherId/portal')
+              navigate(`/teacher/${decoded.user_id}/portal`)
             }
           } else {
             setError(data.error);

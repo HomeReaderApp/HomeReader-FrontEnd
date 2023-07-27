@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { decodeTeacherToken, saveAuthToken } from '../utils/DecodeTokens';
 
 export default function RegisterTeacherUser() {
   const [firstName, setFirstName] = useState('');
@@ -41,10 +42,12 @@ export default function RegisterTeacherUser() {
         throw new Error(data.error);
       }
 
-      localStorage.setItem('token', data.token);
+      // localStorage.setItem('token', data.token);
+      saveAuthToken(data.token)
+      const decoded = decodeTeacherToken(data.token)
 
       // If registration is successful, navigate to the teacher portal
-      navigate('/teacher/portal');
+      navigate(`/teacher/${decoded.user_id}/portal`);
 
       console.log('User registered successfully:', data);
     } catch (error) {
