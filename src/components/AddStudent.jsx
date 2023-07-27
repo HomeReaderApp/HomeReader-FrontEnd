@@ -4,7 +4,6 @@ import { getAuthToken } from '../utils/DecodeTokens';
 
 export default function CreateStudentForm() {
   const { classID } = useParams(); // Get the classID from the URL parameter
-  console.log(classID)
 
   // Now you have access to the classID to use in your component
   const [firstName, setFirstName] = useState('');
