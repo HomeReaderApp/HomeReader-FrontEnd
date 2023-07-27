@@ -64,7 +64,7 @@ export default function TeacherClasses() {
         <ul>
           {classes.map((teacherClass) => (
             <li key={teacherClass._id}>
-            <Link to={`/teacher/classlist/${teacherClass._id}/add-student`}>{teacherClass.className}</Link>
+            <Link to={`/teacher/classlist/${teacherClass._id}/student-list`}>{teacherClass.className}</Link>
           </li>
           ))}
         </ul>
