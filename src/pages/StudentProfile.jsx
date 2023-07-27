@@ -34,6 +34,11 @@ export default function StudentProfilePage(){
 
         fetchStudentData();
     }, [studentID]);
+    // Function to format the date string into a more readable format
+    const formatDateString = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleString(); // Adjust the options if needed, e.g., date.toLocaleString('en-US')
+    };
 
     return (
         <div>
@@ -56,7 +61,7 @@ export default function StudentProfilePage(){
                         <p>Book Name: {readingEntry.bookName}</p>
                         <p>Rating: {readingEntry.rating}</p>
                         <p>Comments: {readingEntry.comments}</p>
-                        <p>Created At: {readingEntry.createdAtDate}</p>
+                        <p>Date: {formatDateString(readingEntry.date)}</p>
                     </li>
                     ))}
                 </ul>
