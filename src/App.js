@@ -1,6 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import TeacherLogin from "./pages/TeacherLogin";
+import StudentLogin from "./components/StudentLogin";
+import RegisterTeacherUser from "./components/TeacherRegister";
+import ReadingForm from "./components/ReadingForm";
 
 
 function App() {
@@ -9,9 +12,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} /> 
         <Route path="/teacher/login" element={<TeacherLogin />} /> 
-        <Route path="/teacher/register" element={<h1>Register</h1>} /> 
-        <Route path="/student/login" element={<h1>Student Login</h1>} /> 
-        <Route path="/student/:studentID/reading-form" element={<h1>Student reading form</h1>} /> 
+        <Route path="/teacher/register" element={<RegisterTeacherUser />} /> 
+        <Route path="/student/login" element={<StudentLogin />} /> 
+        <Route path="/student/:studentID/reading-form" element={<ReadingForm />} /> 
         <Route path="/teacher/portal" element={<h1>Teacher Portal</h1>} /> 
         <Route path="/teacher/classes" element={<h1>Teacher classes</h1>} /> 
         <Route path="/teacher/classlist/:classID" element={<h1>Teacher class</h1>} /> 

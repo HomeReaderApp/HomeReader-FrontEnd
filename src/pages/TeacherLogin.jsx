@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 
 export default function TeacherLogin(props){
@@ -7,11 +8,17 @@ export default function TeacherLogin(props){
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
+    let NavLinkStyle = {
+        textDecorationColor: "blue",
+        textDecorationLine: "underline"
+    }
+
     const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-          const response = await fetch('/mongodb://localhost:27017/home_reader_db/teacher/login', {
+            console.log(username)
+          const response = await fetch('http://localhost:3001/teacher/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -24,10 +31,9 @@ export default function TeacherLogin(props){
           if (response.ok) {
             if (data.token) {
               // Save the token to localStorage 
-              
               localStorage.setItem('token', data.token);
     
-              navigate('/teacher/portal')
+              navigate('/teacher/:teacherId/portal')
             }
           } else {
             setError(data.error);
@@ -52,8 +58,10 @@ export default function TeacherLogin(props){
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+            <p>New user, register <NavLink to="/teacher/register" style={NavLinkStyle}>here</NavLink></p>
             {error && <p>{error}</p>}
             <button onClick={handleLogin}>Login</button>
+
         </div>
     )
 }
