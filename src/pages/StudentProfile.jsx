@@ -1,21 +1,71 @@
-import StudentsProvider, { useStudentData } from "../contexts/StudentsContext"
 
-export default function StudentProfilePage(props){
-    const globalStudentsData = useStudentData()
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getAuthToken } from '../utils/DecodeTokens';
 
-    return(
+export default function StudentProfilePage(){
+    const {studentID} = useParams()
+    console.log(studentID)
+    const [studentData, setStudentData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Function to fetch student data
+        const token = getAuthToken()
+        const fetchStudentData = async () => {
+        try {
+
+            const response = await fetch(`http://localhost:3001/get-student/${studentID}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                  },
+            });
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setStudentData(data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching student data:', error);
+            setLoading(false);
+        }
+        };
+
+        fetchStudentData();
+    }, [studentID]);
+
+    return (
         <div>
-            <h1>Student Profile Page</h1>
-            <h3>We have {globalStudentsData.length} students in storage</h3>
-            <h3>List of all students</h3>
-            {globalStudentsData.map((student) => {
-                return(
-                    <div key={student.id}>
-                        <h4>{student.firstName}{student.lastName}</h4>
+        {loading ? (
+            <p>Loading...</p>
+        ) : (
+            <>
+            <h1>Student Details</h1>
+            <p>First Name: {studentData.firstName}</p>
+            <p>Last Name: {studentData.lastName}</p>
+            <p>Year Level: {studentData.yearLevel}</p>
+            <p>Login Code: {studentData.loginCode}</p>
 
-                    </div>
-                )
-            })}
+            {studentData.readingData && studentData.readingData.length > 0 ? (
+                <div>
+                <h2>Reading Data</h2>
+                <ul>
+                    {studentData.readingData.map((readingEntry) => (
+                    <li key={readingEntry._id}>
+                        <p>Book Name: {readingEntry.bookName}</p>
+                        <p>Rating: {readingEntry.rating}</p>
+                        <p>Comments: {readingEntry.comments}</p>
+                        <p>Created At: {readingEntry.createdAtDate}</p>
+                    </li>
+                    ))}
+                </ul>
+                </div>
+            ) : (
+                <p>No reading data available.</p>
+            )}
+            </>
+        )}
         </div>
-    )
-}
+    );
+    };

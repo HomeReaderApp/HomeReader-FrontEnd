@@ -9,6 +9,7 @@ import TeacherClasses from "./components/ClassList";
 import CreateStudentForm from "./components/AddStudent";
 import StudentList from "./components/StudentList";
 import UpdateStudentForm from "./components/UpdateStudent";
+import StudentProfilePage from "./pages/StudentProfile";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path="/teacher/classlist/:classID/student-list" element={<StudentList />} /> 
         <Route path="/teacher/classlist/:classID/add-student" element={<CreateStudentForm />} /> 
         <Route path="/teacher/classlist/:classID/update-student/:studentID" element={<UpdateStudentForm />} /> 
-        <Route path="/teacher/classlist/:classID/studentprofile/:studentID" element={<h1>Student profile</h1>} /> 
+        <Route path="/teacher/classlist/:classID/studentprofile/:studentID" element={<StudentProfilePage /> } /> 
         <Route path="/teacher/classlist/:classID/comments" element={<h1>Comments</h1>} /> 
         <Route path="/teacher/classlist/:classID/favouritebooks" element={<h1>Favourite books</h1>} /> 
       </Routes>
