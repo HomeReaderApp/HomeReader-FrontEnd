@@ -28,10 +28,10 @@ export default function CreateStudentForm() {
     }
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-
+  
     try {
       const token = getAuthToken();
       const response = await fetch(`http://localhost:3001/${classID}/add-student`, {
@@ -47,30 +47,31 @@ export default function CreateStudentForm() {
           loginCode
         }),
       });
+  
       if (!response.ok) {
-        const errorMessage = await response.json(); // Parse the error response from the server
-        throw new Error(errorMessage.error);
+        const errorData = await response.json();
+        if (response.status === 400 && errorData.error) {
+          setError(errorData.error);
+        } else {
+          throw new Error('Failed to create student');
+        }
+      } else {
+        // Handle successful student creation here (e.g., show success message, reset form fields, etc.)
+        console.log('Student created successfully');
+        setFirstName('');
+        setLastName('');
+        setYearLevel('');
+        setLoginCode('');
+  
+        // Navigate back to the student list page after successful submission
+        navigate(`/teacher/classlist/${classID}/student-list`);
       }
-    //   if (!response.ok) {
-    //     throw new Error('Failed to create student');
-    //   }
-
-      // Handle successful student creation here (e.g., show success message, reset form fields, etc.)
-      console.log('Student created successfully');
-      setFirstName('');
-      setLastName('');
-      setYearLevel('');
-      setLoginCode('');
-
-      // Navigate back to the student list page after successful submission
-      navigate(`/teacher/classlist/${classID}/student-list`);
     } catch (error) {
-    //   console.error('Error creating student:', error);
-    //   setError('Failed to create student');
-        console.error('Error creating student:', error.message);
-        setError(error.message);
+      console.error('Error creating student:', error.message);
+      setError('Failed to create student');
     }
   };
+  
 
   return (
     <div>
