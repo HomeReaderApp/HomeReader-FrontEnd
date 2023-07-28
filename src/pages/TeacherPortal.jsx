@@ -26,14 +26,8 @@ export default function TeacherPortal(props){
             <h1>Teacher Portal</h1>
             <h1>Welcome, {username}</h1>
 
-        {/* Buttons that link to other pages */}
-            {/* <Link to="http://localhost:3000/teacher/classes"> */}
             <Link to="/teacher/classes" >
                 <button>Teacher classes</button>
-            </Link>
-
-            <Link to="/teacher/student-profile">
-                <button>Student profile</button>
             </Link>
 
             <Link to="/teacher/class-dropdown">

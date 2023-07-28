@@ -15,7 +15,7 @@ import Comments from "./pages/Comments";
 import FavouriteBooksList from "./components/FavouriteBooks";
 import FavouriteBooksDropdown from "./pages/FavouriteBooks";
 import StudentProfileDisplay from "./components/StudentProfileDisplay";
-// import BooksReadByStudent from "./components/BooksReadByStudent";
+
 
 
 function App() {
@@ -33,7 +33,6 @@ function App() {
         <Route path="/teacher/classlist/:classID/add-student" element={<CreateStudentForm />} /> 
         <Route path="/teacher/classlist/:classID/update-student/:studentID" element={<UpdateStudentForm />} /> 
         <Route path="/teacher/classlist/:classID/studentprofile/:studentID" element={<StudentProfilePage /> } /> 
-        {/* <Route path="/teacher/books-read/:studentID" element={<BooksReadByStudent /> } /> */}
         <Route path="/teacher/student-profile" element={<StudentProfileDisplay /> } /> 
         <Route path="/teacher/class-dropdown" element={<ClassDropdown /> } /> 
         <Route path="/teacher/:classId/comments" element={<Comments /> } /> 

@@ -1,11 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import { Link, useNavigate } from 'react-router-dom';
 import useApiUrl from '../utils/API';
 
-export default function ClassDropdown() {
-  const apiUrl = useApiUrl()
+export default function ClassListDropdown({ navigateTo }) {
+  const apiUrl = useApiUrl();
 
   const [classes, setClasses] = useState([]);
   const [user_id, setUser_id] = useState(null);
@@ -62,8 +61,8 @@ export default function ClassDropdown() {
     const selectedClassId = event.target.value;
     setSelectedClass(selectedClassId);
 
-    // Navigate to the class comments page when a class is selected
-    navigate(`/teacher/${selectedClassId}/comments`);
+    // Navigate to the specified path when a class is selected
+    navigate(navigateTo.replace(':classId', selectedClassId));
   };
 
   return (
@@ -87,4 +86,3 @@ export default function ClassDropdown() {
     </div>
   );
 }
-
