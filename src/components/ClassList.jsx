@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import CreateClassForm from './CreateClass';
 import { Link } from 'react-router-dom';
+import { FetchTeacherClasses } from '../services/TeacherServices';
 
 export default function TeacherClasses() {
   const [classes, setClasses] = useState([]);
@@ -35,17 +36,12 @@ export default function TeacherClasses() {
 
   const fetchTeacherClasses = async (user_id) => {
     try {
-    const token = getAuthToken()
-      const response = await fetch(`http://localhost:3001/${user_id}/get-classes`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }})
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch teacher classes');
+      const data = await FetchTeacherClasses(user_id); // Use the service function directly
+      if (data) {
+        setClasses(data);
+      } else {
+        setError('Error fetching teacher classes');
       }
-      const data = await response.json();
-      setClasses(data);
     } catch (error) {
       setError('Error fetching teacher classes');
     }

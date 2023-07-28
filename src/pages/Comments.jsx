@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAuthToken } from '../utils/DecodeTokens';
+import { FetchComments } from '../services/ReadingDataServices';
 
 export default function Comments() {
   const { classId } = useParams();
@@ -12,30 +12,18 @@ export default function Comments() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Function to fetch comments from the backend
-    const fetchComments = async () => {
-      try {
-        const token = getAuthToken();
-        const response = await fetch(`http://localhost:3001/comments/${classId}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-              },
-        });
-        console.log(response)
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    const fetchData = async () => {
+        const data = await FetchComments(classId);
+        if (data) {
+            setComments(data);
+        } else {
+            setComments([]);
         }
-        const data = await response.json();
-        setComments(data);
         setLoading(false);
-      } catch (error) {
-        console.error('Error:', error);
-        setLoading(false);
-      }
     };
 
-    fetchComments();
-  }, [classId]);
+    fetchData();
+}, [classId]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);

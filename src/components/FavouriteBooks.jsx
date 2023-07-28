@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
+import useApiUrl from '../utils/API';
 
 export default function FavouriteBooksList(){
   const { classId } = useParams()
   const [favouriteBooks, setFavouriteBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const ApiUrl = useApiUrl()
+
   useEffect(() => {
     // Function to fetch favourite books with a rating of 5 from the backend
     const fetchFavouriteBooks = async () => {
       try {
         const token = getAuthToken()
-        const response = await fetch(`http://localhost:3001/favourite-books/${classId}`, {
+        const response = await fetch(`${ApiUrl}/favourite-books/${classId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           },

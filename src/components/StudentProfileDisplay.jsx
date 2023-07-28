@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAuthToken } from '../utils/DecodeTokens';
+import { FetchTeacherClass } from '../services/ClassServices';
 
 export default function StudentDropdown() {
   const { classID } = useParams();
@@ -10,33 +10,16 @@ export default function StudentDropdown() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchTeacherClass = async () => {
+    const fetchData = async () => {
       try {
-        const token = getAuthToken()
-        if (!token) {
-          setError('Authorization token not found');
-          return;
-        }
-
-        const response = await fetch(`http://localhost:3001/get-class/${classID}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch teacher class');
-        }
-
-        const data = await response.json();
+        const data = await FetchTeacherClass(classID); // Use the service function to fetch teacher class details
         setTeacherClass(data);
       } catch (error) {
         setError('Error fetching teacher class');
       }
     };
 
-    fetchTeacherClass();
+    fetchData();
   }, [classID]);
 
   const handleStudentChange = (event) => {

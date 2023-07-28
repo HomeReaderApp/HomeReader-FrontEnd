@@ -4,11 +4,14 @@ import { useParams, Link } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
 import UpdateStudentForm from './UpdateStudent';
 import UpdateButton from './UpdateButton';
+import useApiUrl from '../utils/API';
 
 export default function StudentList() {
   const { classID } = useParams();
   const [teacherClass, setTeacherClass] = useState(null);
   const [error, setError] = useState(null);
+
+  const ApiUrl = useApiUrl()
 
   useEffect(() => {
     const fetchTeacherClass = async () => {
@@ -19,7 +22,7 @@ export default function StudentList() {
           return;
         }
 
-        const response = await fetch(`http://localhost:3001/get-class/${classID}`, {
+        const response = await fetch(`${ApiUrl}/get-class/${classID}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -43,7 +46,7 @@ export default function StudentList() {
   const handleDeleteStudent = async (studentID) => {
     try {
       const token = getAuthToken();
-      const response = await fetch(`http://localhost:3001/delete-student/${studentID}`, {
+      const response = await fetch(`${ApiUrl}/delete-student/${studentID}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

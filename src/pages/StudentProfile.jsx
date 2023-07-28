@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getAuthToken } from '../utils/DecodeTokens';
+import { useParams } from 'react-router-dom';
+import { FetchStudentData } from '../services/StudentsServices';
+
 
 export default function StudentProfilePage(){
     const {studentID} = useParams()
@@ -10,33 +11,21 @@ export default function StudentProfilePage(){
 
     useEffect(() => {
         // Function to fetch student data
-        const token = getAuthToken()
-        const fetchStudentData = async () => {
-        try {
-
-            const response = await fetch(`http://localhost:3001/get-student/${studentID}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                  },
-            });
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
+        const fetchData = async () => {
+            const data = await FetchStudentData(studentID);
+            if (data) {
+                setStudentData(data);
             }
-            const data = await response.json();
-            setStudentData(data);
             setLoading(false);
-        } catch (error) {
-            console.error('Error fetching student data:', error);
-            setLoading(false);
-        }
         };
 
-        fetchStudentData();
+        fetchData();
     }, [studentID]);
+
     // Function to format the date string into a more readable format
     const formatDateString = (dateString) => {
         const date = new Date(dateString);
-        return date.toLocaleString(); // Adjust the options if needed, e.g., date.toLocaleString('en-US')
+        return date.toLocaleString(); 
     };
 
     return (

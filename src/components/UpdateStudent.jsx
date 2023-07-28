@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAuthToken } from '../utils/DecodeTokens';
+import { FetchStudentData, UpdateStudentData } from '../services/StudentsServices';
 
 export default function UpdateStudentForm(props) {
   const { studentID } = useParams();
@@ -13,37 +13,20 @@ export default function UpdateStudentForm(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchStudentData = async () => {
-      try {
-        const token = getAuthToken();
-        if (!token) {
-          setError('Authorization token not found');
-          return;
-        }
-
-        const response = await fetch(`http://localhost:3001/get-student/${studentID}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch student data');
-        }
-
-        const data = await response.json();
+    const fetchData = async () => {
+      const data = await FetchStudentData(studentID);
+      if (data) {
         // Set the student data in the state to pre-fill the form
         setFirstName(data.firstName);
         setLastName(data.lastName);
         setYearLevel(data.yearLevel);
         setLoginCode(data.loginCode);
-      } catch (error) {
+      } else {
         setError('Error fetching student data');
       }
     };
 
-    fetchStudentData();
+    fetchData();
   }, [studentID]);
 
   const handleSubmit = async (e) => {
@@ -51,25 +34,12 @@ export default function UpdateStudentForm(props) {
     setError(null);
 
     try {
-      const token = getAuthToken();
-      const response = await fetch(`http://localhost:3001/update-student/${studentID}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          yearLevel,
-          loginCode
-        }),
+      const response = await UpdateStudentData(studentID, { // Using the updateStudentData service function
+        firstName,
+        lastName,
+        yearLevel,
+        loginCode
       });
-
-      if (!response.ok) {
-        const errorMessage = await response.json(); // Parse the error response from the server
-        throw new Error(errorMessage.message || 'Failed to update student');
-      }
 
       // Handle successful student update here (e.g., show success message, reset form fields, etc.)
       console.log('Student updated successfully');
@@ -106,3 +76,4 @@ export default function UpdateStudentForm(props) {
     </div>
   );
 }
+

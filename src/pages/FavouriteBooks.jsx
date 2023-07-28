@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { FetchTeacherClasses } from '../services/TeacherServices';
 
 export default function FavouriteBooksDropdown() {
   const [classes, setClasses] = useState([]);
@@ -29,28 +30,18 @@ export default function FavouriteBooksDropdown() {
 
   useEffect(() => {
     if (user_id) {
-      fetchTeacherClasses(user_id);
+        fetchClasses();
     }
-  }, [user_id]);
+}, [user_id]);
 
-  const fetchTeacherClasses = async (user_id) => {
-    try {
-      const token = getAuthToken();
-      const response = await fetch(`http://localhost:3001/${user_id}/get-classes`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch teacher classes');
-      }
-      const data = await response.json();
-      setClasses(data);
-    } catch (error) {
-      setError('Error fetching teacher classes');
+const fetchClasses = async () => {
+    const data = await FetchTeacherClasses(user_id);
+    if (data) {
+        setClasses(data);
+    } else {
+        setError('Error fetching teacher classes');
     }
-  };
+};
 
   const navigate = useNavigate();
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useApiUrl from '../utils/API';
+import { FetchTeacherClasses } from '../services/TeacherServices';
 
 export default function ClassListDropdown({ navigateTo }) {
   const apiUrl = useApiUrl();
@@ -38,22 +39,16 @@ export default function ClassListDropdown({ navigateTo }) {
 
   const fetchTeacherClasses = async (user_id) => {
     try {
-      const token = getAuthToken();
-      const response = await fetch(`${apiUrl}/${user_id}/get-classes`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch teacher classes');
+      const data = await FetchTeacherClasses(user_id); // Use the service function directly
+      if (data) {
+        setClasses(data);
+      } else {
+        setError('Error fetching teacher classes');
       }
-      const data = await response.json();
-      setClasses(data);
     } catch (error) {
       setError('Error fetching teacher classes');
     }
-  };
+  }
 
   const navigate = useNavigate();
 
