@@ -32,15 +32,15 @@ export default function TeacherPortal(props){
                 <button>Teacher classes</button>
             </Link>
 
-            <Link to="/teacher/classlist/classID/studentprofile/studentID">
+            <Link to="/teacher/student-profile">
                 <button>Student profile</button>
             </Link>
 
-            <Link to="/teacher/classlist/classID/comments">
+            <Link to="/teacher/class-dropdown">
                 <button>Comments</button>
             </Link>
 
-            <Link to="/teacher/classlist/classID/favouritebooks">
+            <Link to="/teacher/favourite-books">
                 <button>Favourite books</button>
             </Link>
 

@@ -1,11 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
 
 export default function StudentProfilePage(){
     const {studentID} = useParams()
-    console.log(studentID)
     const [studentData, setStudentData] = useState({});
     const [loading, setLoading] = useState(true);
 
