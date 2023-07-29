@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import { useNavigate } from 'react-router-dom';
 import { FetchTeacherClasses } from '../services/TeacherServices';
+import Header from '../components/Header';
 
 export default function FavouriteBooksDropdown() {
   const [classes, setClasses] = useState([]);
@@ -56,6 +57,7 @@ const fetchClasses = async () => {
 
   return (
     <div>
+      <Header />
       <h1>Teacher Classes</h1>
       {error ? (
         <p>Error: {error}</p>

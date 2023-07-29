@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import { useNavigate } from 'react-router-dom';
 import { FetchTeacherClasses } from '../services/TeacherServices';
+import Header from './Header';
 
 export default function ClassDropdown() {
  
-
   const [classes, setClasses] = useState([]);
   const [user_id, setUser_id] = useState(null);
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
   const [error, setError] = useState(null);
-  const [selectedClass, setSelectedClass] = useState(null); // Store the selected class
+  const [selectedClass, setSelectedClass] = useState(null); 
 
   useEffect(() => {
     const token = getAuthToken();
@@ -25,7 +25,7 @@ export default function ClassDropdown() {
     try {
       const decoded = decodeTeacherToken(token);
       setUser_id(decoded.user_id);
-      setUsername(decoded.username);
+      // setUsername(decoded.username);
     } catch (error) {
       setError('Error decoding the JWT token');
     }
@@ -62,6 +62,7 @@ export default function ClassDropdown() {
 
   return (
     <div>
+      <Header />
       <h1>Teacher Classes</h1>
       {error ? (
         <p>Error: {error}</p>

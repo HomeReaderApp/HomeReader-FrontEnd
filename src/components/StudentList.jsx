@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
-import UpdateStudentForm from './UpdateStudent';
 import UpdateButton from './UpdateButton';
 import useApiUrl from '../utils/API';
+import GoBackButton from './GoBackButton';
+import Header from './Header';
 
 export default function StudentList() {
   const { classID } = useParams();
@@ -71,6 +72,7 @@ export default function StudentList() {
 
   return (
     <div>
+      <Header />
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -87,7 +89,6 @@ export default function StudentList() {
                     {student.firstName} {student.lastName}
                     </Link>
                     <button onClick={() => handleDeleteStudent(student._id)}>Delete</button>
-                    {/* <UpdateStudentForm studentID={student._id} classID={classID} /> */}
                     <UpdateButton studentID={student._id} classID={classID} />
                   </li>
                 ))}
@@ -109,6 +110,7 @@ export default function StudentList() {
           )}
         </div>
       )}
+      <GoBackButton />
     </div>
   );
 }

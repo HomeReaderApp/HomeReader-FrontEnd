@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FetchTeacherClass } from '../services/ClassServices';
+import Header from './Header';
 
 export default function StudentDropdown() {
   const { classID } = useParams();
@@ -32,6 +33,7 @@ export default function StudentDropdown() {
 
   return (
     <div>
+      <Header />
       {error ? (
         <p>Error: {error}</p>
       ) : (

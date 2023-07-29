@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CreateStudent } from '../services/StudentsServices';
+import Header from './Header';
 
 export default function CreateStudentForm() {
   const { classID } = useParams(); // Get the classID from the URL parameter
@@ -57,6 +58,7 @@ export default function CreateStudentForm() {
 
   return (
     <div>
+      <Header />
       <h1>Create Student</h1>
       <form onSubmit={handleSubmit}>
         <div>

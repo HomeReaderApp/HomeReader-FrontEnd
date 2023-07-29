@@ -1,13 +1,13 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FetchComments } from '../services/ReadingDataServices';
+import GoBackButton from '../components/GoBackButton';
+import Header from '../components/Header';
 
 export default function Comments() {
   const { classId } = useParams();
-  console.log(classId)
-  const navigate = useNavigate();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,13 +30,9 @@ export default function Comments() {
     return date.toLocaleString(); // Format the date according to the user's locale
   };
 
-  const handleGoBack = () => {
-    // Navigate back to the previous page
-    navigate(-1);
-  };
-
   return (
     <div>
+      <Header />
       {loading ? (
         <p>Loading comments...</p>
       ) : (
@@ -60,7 +56,7 @@ export default function Comments() {
           )}
         </div>
       )}
-      <button onClick={handleGoBack}>Go Back</button>
+      <GoBackButton  />
     </div>
   );
 }

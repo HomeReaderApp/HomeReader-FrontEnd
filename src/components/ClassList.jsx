@@ -3,6 +3,7 @@ import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import CreateClassForm from './CreateClass';
 import { Link } from 'react-router-dom';
 import { FetchTeacherClasses } from '../services/TeacherServices';
+import Header from './Header';
 
 export default function TeacherClasses() {
   const [classes, setClasses] = useState([]);
@@ -49,6 +50,7 @@ export default function TeacherClasses() {
 
   return (
     <div>
+      <Header />
       <h1>Teacher Classes</h1>
       {user_id && (
         <p>Welcome, {username}</p>

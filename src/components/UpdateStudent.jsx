@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FetchStudentData, UpdateStudentData } from '../services/StudentsServices';
+import Header from './Header';
 
 export default function UpdateStudentForm(props) {
   const { studentID } = useParams();
@@ -52,6 +53,7 @@ export default function UpdateStudentForm(props) {
 
   return (
     <div>
+      <Header />
       <h1>Update Student</h1>
       <form onSubmit={handleSubmit}>
         <div>

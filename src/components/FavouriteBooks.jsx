@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
 import useApiUrl from '../utils/API';
+import GoBackButton from './GoBackButton';
+import Header from './Header';
 
 export default function FavouriteBooksList(){
   const { classId } = useParams()
@@ -38,6 +40,7 @@ export default function FavouriteBooksList(){
 
   return (
     <div>
+      <Header />
       {loading ? (
         <p>Loading favourite books...</p>
       ) : (
@@ -58,6 +61,7 @@ export default function FavouriteBooksList(){
           )}
         </div>
       )}
+      <GoBackButton />
     </div>
   );
 }

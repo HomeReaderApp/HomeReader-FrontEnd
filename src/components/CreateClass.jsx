@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { getAuthToken, decodeTeacherToken } from '../utils/DecodeTokens'
+import { getAuthToken } from '../utils/DecodeTokens'
+
 
 export default function CreateClassForm() {
   const [className, setClassName] = useState('');
-//   const [teacherId, setTeacherId] = useState('')
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
