@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { getAuthToken, decodeTeacherToken } from '../utils/DecodeTokens'
+import { getAuthToken } from '../utils/DecodeTokens'
+
 
 export default function CreateClassForm() {
   const [className, setClassName] = useState('');
-//   const [teacherId, setTeacherId] = useState('')
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -17,8 +17,6 @@ export default function CreateClassForm() {
 
     try {
       const token = getAuthToken(); // Get the authentication token from local storage
-    //   const decoded = decodeTeacherToken(token)
-    //   setTeacherId(decoded.user_id)
 
       const response = await fetch('http://localhost:3001/create-class', {
         method: 'POST',

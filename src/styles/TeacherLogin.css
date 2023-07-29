@@ -1,0 +1,52 @@
+/* TeacherLogin.css */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.relaxing-container {
+    width: 80%; /* Adjust the width to your preference */
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.relaxing-container input {
+    width: 100%;
+    padding: 12px; /* Adding padding to the inputs */
+    margin-bottom: 15px; /* Increasing spacing between inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Add box-sizing to include padding in the width */
+}
+
+.nav-link {
+    color: blue;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+}
+
+.login-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px; /* Adjust the padding to make the button bigger */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #45a049;
+}
+
+

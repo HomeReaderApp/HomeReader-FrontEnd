@@ -1,11 +1,7 @@
-import { useEffect, useState } from "react";
-import { useStudentData } from "../contexts/StudentsContext"
+
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function Homepage(props){
-    const globalStudentsData = useStudentData()
 
     const navigate = useNavigate()
 

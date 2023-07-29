@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAuthToken } from '../utils/DecodeTokens';
+import { CreateStudent } from '../services/StudentsServices';
+import Header from './Header';
 
 export default function CreateStudentForm() {
   const { classID } = useParams(); // Get the classID from the URL parameter
 
-  // Now you have access to the classID to use in your component
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [yearLevel, setYearLevel] = useState('');
@@ -27,35 +27,19 @@ export default function CreateStudentForm() {
     }
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-  
+
     try {
-      const token = getAuthToken();
-      const response = await fetch(`http://localhost:3001/${classID}/add-student`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          yearLevel,
-          loginCode
-        }),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        if (response.status === 400 && errorData.error) {
-          setError(errorData.error);
-        } else {
-          throw new Error('Failed to create student');
-        }
-      } else {
-        // Handle successful student creation here (e.g., show success message, reset form fields, etc.)
+      const studentData = {
+        firstName,
+        lastName,
+        yearLevel,
+        loginCode
+      };
+
+      await CreateStudent(classID, studentData);
         console.log('Student created successfully');
         setFirstName('');
         setLastName('');
@@ -65,7 +49,7 @@ const handleSubmit = async (e) => {
         // Navigate back to the student list page after successful submission
         navigate(`/teacher/classlist/${classID}/student-list`);
       }
-    } catch (error) {
+     catch (error) {
       console.error('Error creating student:', error.message);
       setError('Failed to create student');
     }
@@ -74,6 +58,7 @@ const handleSubmit = async (e) => {
 
   return (
     <div>
+      <Header />
       <h1>Create Student</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -98,3 +83,6 @@ const handleSubmit = async (e) => {
     </div>
   );
 }
+
+
+

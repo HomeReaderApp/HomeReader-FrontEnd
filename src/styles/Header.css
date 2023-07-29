@@ -1,0 +1,30 @@
+/* Header.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+  }
+  
+  .logo img {
+    width: 60px; /* Set the desired width for your round logo */
+    height: 60px; /* Set the desired height for your round logo */
+    border-radius: 50%; /* Makes the logo round */
+  }
+  
+  .navbar {
+    display: flex;
+  }
+  
+  .navbar button {
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+
+  

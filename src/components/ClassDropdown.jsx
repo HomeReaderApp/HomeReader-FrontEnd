@@ -1,19 +1,21 @@
+
 import React, { useEffect, useState } from 'react';
 import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
-import CreateClassForm from './CreateClass';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FetchTeacherClasses } from '../services/TeacherServices';
 import Header from './Header';
 
-export default function TeacherClasses() {
+export default function ClassDropdown() {
+ 
   const [classes, setClasses] = useState([]);
   const [user_id, setUser_id] = useState(null);
-  const [username, setUsername] = useState('')
+  // const [username, setUsername] = useState('');
   const [error, setError] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(null); 
 
   useEffect(() => {
     const token = getAuthToken();
-    
+
     if (!token) {
       // Handle the case when the token is not available
       setError('JWT token not found in local storage');
@@ -23,7 +25,7 @@ export default function TeacherClasses() {
     try {
       const decoded = decodeTeacherToken(token);
       setUser_id(decoded.user_id);
-      setUsername(decoded.username)
+      // setUsername(decoded.username);
     } catch (error) {
       setError('Error decoding the JWT token');
     }
@@ -48,28 +50,36 @@ export default function TeacherClasses() {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleClassChange = (event) => {
+    const selectedClassId = event.target.value;
+    setSelectedClass(selectedClassId);
+
+    // Navigate to the class comments page when a class is selected
+    navigate(`/teacher/${selectedClassId}/comments`);
+  };
+
   return (
     <div>
       <Header />
       <h1>Teacher Classes</h1>
-      {user_id && (
-        <p>Welcome, {username}</p>
-      )}
-      <CreateClassForm />
       {error ? (
         <p>Error: {error}</p>
       ) : (
-        <ul>
-          {classes.map((teacherClass) => (
-            <li key={teacherClass._id}>
-            <Link to={`/teacher/classlist/${teacherClass._id}/student-list`}>{teacherClass.className}</Link>
-          </li>
-          ))}
-        </ul>
+        <>
+          <label htmlFor="class-dropdown">Select a class:</label>
+          <select id="class-dropdown" value={selectedClass} onChange={handleClassChange}>
+            <option value="">--Select a class--</option>
+            {classes.map((teacherClass) => (
+              <option key={teacherClass._id} value={teacherClass._id}>
+                {teacherClass.className}
+              </option>
+            ))}
+          </select>
+        </>
       )}
     </div>
   );
-};
-
-
+}
 

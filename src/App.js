@@ -10,6 +10,12 @@ import CreateStudentForm from "./components/AddStudent";
 import StudentList from "./components/StudentList";
 import UpdateStudentForm from "./components/UpdateStudent";
 import StudentProfilePage from "./pages/StudentProfile";
+import ClassDropdown from "./components/ClassDropdown";
+import Comments from "./pages/Comments";
+import FavouriteBooksList from "./components/FavouriteBooks";
+import FavouriteBooksDropdown from "./pages/FavouriteBooks";
+import StudentProfileDisplay from "./components/StudentProfileDisplay";
+
 
 
 function App() {
@@ -27,8 +33,11 @@ function App() {
         <Route path="/teacher/classlist/:classID/add-student" element={<CreateStudentForm />} /> 
         <Route path="/teacher/classlist/:classID/update-student/:studentID" element={<UpdateStudentForm />} /> 
         <Route path="/teacher/classlist/:classID/studentprofile/:studentID" element={<StudentProfilePage /> } /> 
-        <Route path="/teacher/classlist/:classID/comments" element={<h1>Comments</h1>} /> 
-        <Route path="/teacher/classlist/:classID/favouritebooks" element={<h1>Favourite books</h1>} /> 
+        <Route path="/teacher/student-profile" element={<StudentProfileDisplay /> } /> 
+        <Route path="/teacher/class-dropdown" element={<ClassDropdown /> } /> 
+        <Route path="/teacher/:classId/comments" element={<Comments /> } /> 
+        <Route path="/teacher/favourite-books" element={<FavouriteBooksDropdown /> } /> 
+        <Route path="/teacher/:classId/favourite-books" element={<FavouriteBooksList /> } /> 
       </Routes>
     </div>
   );

@@ -1,32 +1,63 @@
-import { useState } from "react"
-import { useStudentData } from "../contexts/StudentsContext"
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { FetchTeacherClass } from '../services/ClassServices';
+import Header from './Header';
 
-export default function StudentDisplay(props){
+export default function StudentDropdown() {
+  const { classID } = useParams();
+  const [teacherClass, setTeacherClass] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null); // Store the selected student
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-    const{_id} = props
-    const [localStudent, setLocalStudent] = useState({})
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await FetchTeacherClass(classID); // Use the service function to fetch teacher class details
+        setTeacherClass(data);
+      } catch (error) {
+        setError('Error fetching teacher class');
+      }
+    };
 
-    const globalStudentsData = useStudentData()
+    fetchData();
+  }, [classID]);
 
-    useEffect(() => {
-	
-		setLocalStudent(globalStudentsData.find(globalSpecificStudent => {
+  const handleStudentChange = (event) => {
+    const selectedStudentId = event.target.value;
+    setSelectedStudent(selectedStudentId);
 
-			return globalSpecificStudent._id === _id;
-		}));
+    // Navigate to the student profile page when a student is selected
+    navigate(`/teacher/classlist/${classID}/studentprofile/${selectedStudentId}`);
+  };
 
-
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [globalStudentsData, _id])
-
-    
-
-	return(
-		<div>
-			<h1>{localStudent.firstName} {localStudent.lastName}</h1>
-            <h3>{localStudent.yearLevel}</h3>
-            <h4>{localStudent.readingData}</h4>	
-		</div>
-	)
-
+  return (
+    <div>
+      <Header />
+      {error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <div>
+          {teacherClass ? (
+            <div>
+              <h1>Teacher Class Details</h1>
+              <p>Class Name: {teacherClass.className}</p>
+              <p>Students:</p>
+              <select value={selectedStudent} onChange={handleStudentChange}>
+                <option value="">--Select a student--</option>
+                {teacherClass.students.map((student) => (
+                  <option key={student._id} value={student._id}>
+                    {student.firstName} {student.lastName}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
+

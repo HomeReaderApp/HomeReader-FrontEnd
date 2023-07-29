@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { decodeTeacherToken, saveAuthToken } from '../utils/DecodeTokens';
+import { RegisterTeacher } from '../services/TeacherServices';
 
 export default function RegisterTeacherUser() {
   const [firstName, setFirstName] = useState('');
@@ -16,7 +17,6 @@ export default function RegisterTeacherUser() {
     e.preventDefault();
 
     try {
-      // Prepare the request body
       const requestBody = {
         firstName,
         lastName,
@@ -25,31 +25,14 @@ export default function RegisterTeacherUser() {
         password,
       };
 
-      // Make the POST request using fetch
-      const response = await fetch('http://localhost:3001/teacher/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-        // credentials: 'include',
-      });
+      const token = await RegisterTeacher(requestBody); // Use the service function for registration
 
-      const data = await response.json();
+      saveAuthToken(token);
+      const decoded = decodeTeacherToken(token);
 
-      // Check if there was an error in the response
-      if (!response.ok) {
-        throw new Error(data.error);
-      }
-
-      // localStorage.setItem('token', data.token);
-      saveAuthToken(data.token)
-      const decoded = decodeTeacherToken(data.token)
-
-      // If registration is successful, navigate to the teacher portal
       navigate(`/teacher/${decoded.user_id}/portal`);
 
-      console.log('User registered successfully:', data);
+      console.log('User registered successfully:', decoded);
     } catch (error) {
       setError(error.message);
     }

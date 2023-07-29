@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { decodeAuthToken } from '../utils/DecodeTokens';
+import { SubmitReadingForm } from '../services/ReadingDataServices';
 
 export default function ReadingForm() {
   const navigate = useNavigate();
@@ -30,25 +31,9 @@ export default function ReadingForm() {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        throw new Error('Authentication token not found. Please log in.');
-      }
-    
-      const response = await fetch(`http://localhost:3001/${studentID}/submit-reading-form`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          bookName,
-          rating,
-          comments,
-        }),
-      });
+      const success = await SubmitReadingForm(studentID, bookName, rating, comments);
 
-      if (response.ok) {
+      if (success) {
         setSubmissionMessage('Successfully submitted');
 
         // Automatically return to the login screen after 3 seconds

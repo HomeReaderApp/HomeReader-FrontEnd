@@ -2,13 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
-import UpdateStudentForm from './UpdateStudent';
 import UpdateButton from './UpdateButton';
+import useApiUrl from '../utils/API';
+import GoBackButton from './GoBackButton';
+import Header from './Header';
 
 export default function StudentList() {
   const { classID } = useParams();
   const [teacherClass, setTeacherClass] = useState(null);
   const [error, setError] = useState(null);
+
+  const ApiUrl = useApiUrl()
 
   useEffect(() => {
     const fetchTeacherClass = async () => {
@@ -19,7 +23,7 @@ export default function StudentList() {
           return;
         }
 
-        const response = await fetch(`http://localhost:3001/get-class/${classID}`, {
+        const response = await fetch(`${ApiUrl}/get-class/${classID}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -43,7 +47,7 @@ export default function StudentList() {
   const handleDeleteStudent = async (studentID) => {
     try {
       const token = getAuthToken();
-      const response = await fetch(`http://localhost:3001/delete-student/${studentID}`, {
+      const response = await fetch(`${ApiUrl}/delete-student/${studentID}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -68,6 +72,7 @@ export default function StudentList() {
 
   return (
     <div>
+      <Header />
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -84,7 +89,6 @@ export default function StudentList() {
                     {student.firstName} {student.lastName}
                     </Link>
                     <button onClick={() => handleDeleteStudent(student._id)}>Delete</button>
-                    {/* <UpdateStudentForm studentID={student._id} classID={classID} /> */}
                     <UpdateButton studentID={student._id} classID={classID} />
                   </li>
                 ))}
@@ -106,6 +110,7 @@ export default function StudentList() {
           )}
         </div>
       )}
+      <GoBackButton />
     </div>
   );
 }
