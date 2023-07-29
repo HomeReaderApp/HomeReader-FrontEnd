@@ -6,7 +6,7 @@ import Header from "../components/Header";
 
 export default function TeacherPortal(props){
     const [username, setUsername] = useState("")
-    const [user_id, setUser_id] = useState(null);
+    // const [user_id, setUser_id] = useState(null);
     
     useEffect(() => {
         // Get the auth token from local storage
@@ -14,9 +14,10 @@ export default function TeacherPortal(props){
     
         if (token) {
           // Decode the token to get the username
-          const { username, user_id } = decodeTeacherToken(token);
+        //   got rid of user_id from destructuring below
+          const { username } = decodeTeacherToken(token);
           setUsername(username);
-          setUser_id(user_id);
+        //   setUser_id(user_id);
         }
       }, []);
    
