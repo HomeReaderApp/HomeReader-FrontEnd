@@ -1,5 +1,6 @@
 
 import { getAuthToken } from '../utils/DecodeTokens';
+// const api = process.env.REACT_APP_BACKEND_URL;
 const api = process.env.REACT_APP_BACKEND_URL;
 
 export const FetchTeacherClasses = async (user_id) => {
@@ -25,6 +26,7 @@ export const FetchTeacherClasses = async (user_id) => {
 
 // Register teacher user
 export const RegisterTeacher = async (userData) => {
+  const api = process.env.REACT_APP_BACKEND_URL;
   console.log(api)
   try {
     const response = await fetch(`${api}/teacher/register`, {
