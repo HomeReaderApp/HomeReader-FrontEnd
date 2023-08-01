@@ -24,6 +24,7 @@ export const FetchTeacherClasses = async (user_id) => {
 
 // Register teacher user
 export const RegisterTeacher = async (userData) => {
+  console.log(api)
   try {
     const response = await fetch(`${api}/teacher/register`, {
       method: 'POST',

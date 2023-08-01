@@ -12,12 +12,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    {/* Need to check order of these providers */}
+    Need to check order of these providers
       <StudentsProvider>
         <ReadingDataProvider>
           <App />
-        </ReadingDataProvider>
-      </StudentsProvider>
+        {/* </ReadingDataProvider>
+      </StudentsProvider> */}
     </BrowserRouter>
   </React.StrictMode>
 );
