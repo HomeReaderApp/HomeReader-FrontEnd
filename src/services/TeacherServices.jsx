@@ -46,27 +46,4 @@ export const RegisterTeacher = async (userData) => {
   }
 };
 
-// export const RegisterTeacher = async (userData) => {
-//     try {
-//       const response = await fetch(`${api}/teacher/register`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(userData),
-//       });
-     
-  
-//       const data = await response.json();
-//       console.log(data)
-  
-//       if (!response.ok) {
-//         throw new Error(data.error);
-//       }
-  
-//       return data.token;
-//     } catch (error) {
-//       throw error;
-//     }
-//   };
   
