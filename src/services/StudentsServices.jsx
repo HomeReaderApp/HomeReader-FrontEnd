@@ -1,11 +1,11 @@
-import useApiUrl from '../utils/API';
+
 import { getAuthToken } from '../utils/DecodeTokens';
+const api = process.env.REACT_APP_BACKEND_URL;
 
 export const FetchStudentData = async (studentID) => {
-    const Api = useApiUrl()
     const token = getAuthToken();
     try {
-        const response = await fetch(`${Api}/get-student/${studentID}`, {
+        const response = await fetch(`${api}/get-student/${studentID}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -23,9 +23,8 @@ export const FetchStudentData = async (studentID) => {
 
 export const UpdateStudentData = async (studentID, studentData) => {
   try {
-    const apiUrl = useApiUrl(); // Assuming useApiUrl() returns the API base URL
     const token = getAuthToken();
-    const response = await fetch(`${apiUrl}/update-student/${studentID}`, {
+    const response = await fetch(`${api}/update-student/${studentID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -50,9 +49,8 @@ export const UpdateStudentData = async (studentID, studentData) => {
 // Function to create a new student
 export const CreateStudent = async (classID, studentData) => {
   try {
-    const apiUrl = useApiUrl(); // Assuming useApiUrl() returns the API base URL
     const token = getAuthToken();
-    const response = await fetch(`${apiUrl}/${classID}/add-student`, {
+    const response = await fetch(`${api}/${classID}/add-student`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

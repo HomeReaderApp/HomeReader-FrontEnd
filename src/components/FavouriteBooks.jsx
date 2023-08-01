@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAuthToken } from '../utils/DecodeTokens';
-import useApiUrl from '../utils/API';
 import GoBackButton from './GoBackButton';
 import Header from './Header';
 
@@ -10,14 +9,14 @@ export default function FavouriteBooksList(){
   const [favouriteBooks, setFavouriteBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const ApiUrl = useApiUrl()
+  const api = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     // Function to fetch favourite books with a rating of 5 from the backend
     const fetchFavouriteBooks = async () => {
       try {
         const token = getAuthToken()
-        const response = await fetch(`${ApiUrl}/favourite-books/${classId}`, {
+        const response = await fetch(`${api}/favourite-books/${classId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           },

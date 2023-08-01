@@ -1,12 +1,12 @@
 import { getAuthToken } from '../utils/DecodeTokens';
-import useApiUrl from '../utils/API';
+
+const api = process.env.REACT_APP_BACKEND_URL;
 
 // Function to fetch teacher class details
 export const FetchTeacherClass = async (classID) => {
   try {
-    const apiUrl = useApiUrl(); 
     const token = getAuthToken();
-    const response = await fetch(`${apiUrl}/get-class/${classID}`, {
+    const response = await fetch(`${api}/get-class/${classID}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`

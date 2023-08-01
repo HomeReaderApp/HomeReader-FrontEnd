@@ -1,11 +1,10 @@
 import { getAuthToken } from '../utils/DecodeTokens';
-import useApiUrl from '../utils/API';
+const api = process.env.REACT_APP_BACKEND_URL;
 
 export const FetchComments = async (classId) => {
     try {
-        const apiUrl = useApiUrl(); // Assuming useApiUrl() returns the API base URL
         const token = getAuthToken();
-        const response = await fetch(`${apiUrl}/comments/${classId}`, {
+        const response = await fetch(`${api}/comments/${classId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -28,8 +27,7 @@ export const SubmitReadingForm = async (studentID, bookName, rating, comments) =
       throw new Error('Authentication token not found. Please log in.');
     }
 
-    const Api = useApiUrl();
-    const response = await fetch(`${Api}/${studentID}/submit-reading-form`, {
+    const response = await fetch(`${api}/${studentID}/submit-reading-form`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

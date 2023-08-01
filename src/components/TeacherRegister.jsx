@@ -25,7 +25,7 @@ export default function RegisterTeacherUser() {
         password,
       };
 
-      const token = await RegisterTeacher(requestBody); // Use the service function for registration
+      const token = await RegisterTeacher(requestBody); 
 
       saveAuthToken(token);
       const decoded = decodeTeacherToken(token);

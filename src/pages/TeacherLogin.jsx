@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { saveAuthToken, decodeTeacherToken } from "../utils/DecodeTokens";
-import useApiUrl from "../utils/API";
 import "../styles/TeacherLogin.css";
 
 export default function TeacherLogin(props) {
-    const API = useApiUrl()
+    const api = process.env.REACT_APP_BACKEND_URL;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -16,7 +15,7 @@ export default function TeacherLogin(props) {
     const handleLogin = async () => {
         try {
             console.log(username)
-            const response = await fetch(`${API}/teacher/login`, {
+            const response = await fetch(`${api}/teacher/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
