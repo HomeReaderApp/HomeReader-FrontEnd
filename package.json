@@ -16,8 +16,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start-dev": "cross-env REACT_APP_BACKEND_URL=http://localhost:3001 react-scripts start",
-    "build": "cross-env REACT_APP_BACKEND_URL=https://homereader-backend-dad51d74393a.herokuapp.com react-scripts build",
+    "start-dev": " REACT_APP_BACKEND_URL=http://localhost:3001 react-scripts start",
+    "build": " REACT_APP_BACKEND_URL=https://homereader-backend-dad51d74393a.herokuapp.com react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

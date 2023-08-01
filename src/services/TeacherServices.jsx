@@ -1,12 +1,12 @@
 
 import { getAuthToken } from '../utils/DecodeTokens';
-import { getAPIURL } from '../config/api';
+// import { getAPIURL } from '../config/api';
 // const api = process.env.REACT_APP_BACKEND_URL;
 // const api = "https://homereader-backend-dad51d74393a.herokuapp.com"
 
 export const FetchTeacherClasses = async (user_id) => {
     try {
-      const api = getAPIURL();
+        const api = process.env.REACT_APP_BACKEND_URL
         const token = getAuthToken();
         const response = await fetch(`${api}/${user_id}/get-classes`, {
             headers: {
@@ -29,7 +29,7 @@ export const FetchTeacherClasses = async (user_id) => {
 export const RegisterTeacher = async (userData) => {
 
   try {
-    const api = getAPIURL();
+    const api = process.env.REACT_APP_BACKEND_URL
     const response = await fetch(`${api}/teacher/register`, {
       method: 'POST',
       headers: {
