@@ -35,6 +35,7 @@ export default function FavouriteBooksList(){
     };
 
     fetchFavouriteBooks();
+    // eslint-disable-next-line
   }, [classId]);
 
   return (

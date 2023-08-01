@@ -7,7 +7,7 @@ import Header from '../components/Header';
 export default function FavouriteBooksDropdown() {
   const [classes, setClasses] = useState([]);
   const [user_id, setUser_id] = useState(null);
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
   const [error, setError] = useState(null);
   const [selectedClass, setSelectedClass] = useState(null); // Store the selected class
 
@@ -23,7 +23,7 @@ export default function FavouriteBooksDropdown() {
     try {
       const decoded = decodeTeacherToken(token);
       setUser_id(decoded.user_id);
-      setUsername(decoded.username);
+      // setUsername(decoded.username);
     } catch (error) {
       setError('Error decoding the JWT token');
     }
@@ -33,6 +33,7 @@ export default function FavouriteBooksDropdown() {
     if (user_id) {
         fetchClasses();
     }
+    // eslint-disable-next-line
 }, [user_id]);
 
 const fetchClasses = async () => {
