@@ -4,6 +4,7 @@ const api = process.env.REACT_APP_BACKEND_URL;
 
 export const FetchTeacherClasses = async (user_id) => {
     try {
+      console.log(api)
         const token = getAuthToken();
         const response = await fetch(`${api}/${user_id}/get-classes`, {
             headers: {
