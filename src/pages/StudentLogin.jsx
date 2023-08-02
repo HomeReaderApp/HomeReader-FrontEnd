@@ -34,6 +34,7 @@ export default function StudentLogin() {
       // Save token to local storage and then decode token to get studentID
       saveAuthToken(token)
       const decoded = decodeAuthToken(token)
+      console.log(decoded)
 
       // Redirect to another page using user_id as param
       navigate(`/student/${decoded.user_id}/reading-form`); 
