@@ -1,41 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAuthToken } from '../utils/DecodeTokens';
-import GoBackButton from './GoBackButton';
 import Header from './Header';
+import { fetchFavouriteBooks  } from '../services/ReadingDataServices';
 
 export default function FavouriteBooksList(){
   const { classId } = useParams()
   const [favouriteBooks, setFavouriteBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const api = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     // Function to fetch favourite books with a rating of 5 from the backend
-    const fetchFavouriteBooks = async () => {
+    const fetchData = async () => {
       try {
-        const token = getAuthToken()
-        const response = await fetch(`${api}/favourite-books/${classId}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-        });
-        console.log(response)
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setFavouriteBooks(data);
+        const books = await fetchFavouriteBooks(classId);
+        setFavouriteBooks(books || []);
         setLoading(false);
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error fetching favourite books:', error);
         setLoading(false);
       }
     };
 
-    fetchFavouriteBooks();
-    // eslint-disable-next-line
+    fetchData();
   }, [classId]);
 
   return (
@@ -61,7 +48,6 @@ export default function FavouriteBooksList(){
           )}
         </div>
       )}
-      <GoBackButton />
     </div>
   );
 }

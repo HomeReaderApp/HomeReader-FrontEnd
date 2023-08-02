@@ -1,8 +1,8 @@
 
 import { getAuthToken } from '../utils/DecodeTokens';
-const api = process.env.REACT_APP_BACKEND_URL;
 
 export const FetchStudentData = async (studentID) => {
+    const api = process.env.REACT_APP_BACKEND_URL
     const token = getAuthToken();
     try {
         const response = await fetch(`${api}/get-student/${studentID}`, {
@@ -23,6 +23,7 @@ export const FetchStudentData = async (studentID) => {
 
 export const UpdateStudentData = async (studentID, studentData) => {
   try {
+    const api = process.env.REACT_APP_BACKEND_URL
     const token = getAuthToken();
     const response = await fetch(`${api}/update-student/${studentID}`, {
       method: 'PUT',
@@ -49,6 +50,7 @@ export const UpdateStudentData = async (studentID, studentData) => {
 // Function to create a new student
 export const CreateStudent = async (classID, studentData) => {
   try {
+    const api = process.env.REACT_APP_BACKEND_URL
     const token = getAuthToken();
     const response = await fetch(`${api}/${classID}/add-student`, {
       method: 'POST',
@@ -70,6 +72,30 @@ export const CreateStudent = async (classID, studentData) => {
 
     return true; // Return true to indicate successful student creation
   } catch (error) {
+    throw error;
+  }
+};
+
+
+export const deleteStudent = async (studentID) => {
+  try {
+    const api = process.env.REACT_APP_BACKEND_URL
+    const token = getAuthToken();
+    const response = await fetch(`${api}/delete-student/${studentID}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to delete student');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting student:', error);
     throw error;
   }
 };

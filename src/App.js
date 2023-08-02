@@ -1,18 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import TeacherLogin from "./pages/TeacherLogin";
-import StudentLogin from "./components/StudentLogin";
-import RegisterTeacherUser from "./components/TeacherRegister";
-import ReadingForm from "./components/ReadingForm";
+import StudentLogin from "./pages/StudentLogin";
+import RegisterTeacherUser from "./pages/TeacherRegister";
+import ReadingForm from "./pages/ReadingForm";
 import TeacherPortal from "./pages/TeacherPortal";
-import TeacherClasses from "./components/ClassList";
+import TeacherClasses from "./pages/Classes";
 import CreateStudentForm from "./components/AddStudent";
 import StudentList from "./components/StudentList";
 import UpdateStudentForm from "./components/UpdateStudent";
 import StudentProfilePage from "./pages/StudentProfile";
-import ClassDropdown from "./components/ClassDropdown";
-import Comments from "./pages/Comments";
-import FavouriteBooksList from "./components/FavouriteBooks";
+import ClassDropdown from "./pages/Comments";
+import Comments from "./components/CommentsList";
+import FavouriteBooksList from "./components/FavouriteBooksList";
 import FavouriteBooksDropdown from "./pages/FavouriteBooks";
 import StudentProfileDisplay from "./components/StudentProfileDisplay";
 

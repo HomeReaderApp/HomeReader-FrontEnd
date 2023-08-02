@@ -1,8 +1,6 @@
 
 import { getAuthToken } from '../utils/DecodeTokens';
-// import { getAPIURL } from '../config/api';
-// const api = process.env.REACT_APP_BACKEND_URL;
-// const api = "https://homereader-backend-dad51d74393a.herokuapp.com"
+
 
 export const FetchTeacherClasses = async (user_id) => {
     try {

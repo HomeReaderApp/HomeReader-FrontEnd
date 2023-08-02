@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FetchStudentData } from '../services/StudentsServices';
+import { UpdateStudentData } from '../services/StudentsServices';
 import Header from './Header';
 
 export default function UpdateStudentForm(props) {
@@ -35,12 +36,13 @@ export default function UpdateStudentForm(props) {
     setError(null);
 
     try {
-      // const response = await UpdateStudentData(studentID, { // Using the updateStudentData service function
-      //   firstName,
-      //   lastName,
-      //   yearLevel,
-      //   loginCode
-      // });
+      // eslint-disable-next-line
+      const response = await UpdateStudentData(studentID, { // Using the updateStudentData service function
+        firstName,
+        lastName,
+        yearLevel,
+        loginCode
+      });
 
       // Handle successful student update here (e.g., show success message, reset form fields, etc.)
       console.log('Student updated successfully');

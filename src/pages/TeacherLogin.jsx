@@ -42,7 +42,7 @@ export default function TeacherLogin(props) {
     };
 
     return (
-        <div className="relaxing-container"> {/* Apply the relaxing-container class */}
+        <div className="relaxing-container"> 
             <h1>Teacher Login</h1>
             <input
                 type="text"

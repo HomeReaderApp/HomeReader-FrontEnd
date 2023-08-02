@@ -7,7 +7,6 @@ import Header from '../components/Header';
 export default function FavouriteBooksDropdown() {
   const [classes, setClasses] = useState([]);
   const [user_id, setUser_id] = useState(null);
-  // const [username, setUsername] = useState('');
   const [error, setError] = useState(null);
   const [selectedClass, setSelectedClass] = useState(null); // Store the selected class
 

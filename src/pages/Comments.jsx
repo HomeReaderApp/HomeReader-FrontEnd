@@ -1,62 +1,87 @@
-
-
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { FetchComments } from '../services/ReadingDataServices';
-import GoBackButton from '../components/GoBackButton';
+import React, { useEffect, useState } from 'react';
+import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
+import { useNavigate } from 'react-router-dom';
+import { FetchTeacherClasses } from '../services/TeacherServices';
 import Header from '../components/Header';
 
-export default function Comments() {
-  const { classId } = useParams();
-  const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function ClassDropdown() {
+  const [classes, setClasses] = useState([]);
+  const [user_id, setUser_id] = useState(null);
+  const [error, setError] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-        const data = await FetchComments(classId);
-        if (data) {
-            setComments(data);
-        } else {
-            setComments([]);
-        }
-        setLoading(false);
-    };
+    const token = getAuthToken();
 
-    fetchData();
-}, [classId]);
+    if (!token) {
+      setError('JWT token not found in local storage');
+      return;
+    }
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleString(); // Format the date according to the user's locale
+    try {
+      const decoded = decodeTeacherToken(token);
+      setUser_id(decoded.user_id);
+    } catch (error) {
+      setError('Error decoding the JWT token');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user_id) {
+      fetchClasses();
+    }
+    // eslint-disable-next-line
+  }, [user_id]);
+
+  const navigate = useNavigate();
+
+  const fetchClasses = async () => {
+    try {
+      const data = await FetchTeacherClasses(user_id);
+      setClasses(data);
+    } catch (error) {
+      setError('Error fetching teacher classes');
+    }
+  };
+
+  const handleClassChange = async (event) => {
+    const selectedClassId = event.target.value;
+    setSelectedClass(selectedClassId);
+
+    try {
+      const data = await FetchTeacherClasses(user_id);
+      const selectedClassDetails = data.find((teacherClass) => teacherClass._id === selectedClassId);
+
+      // Check if the selected class details are available
+      if (selectedClassDetails) {
+        navigate(`/teacher/${selectedClassId}/comments`, { state: { classDetails: selectedClassDetails } });
+      } else {
+        setError('Selected class details not found');
+      }
+    } catch (error) {
+      setError('Error fetching class details');
+    }
   };
 
   return (
     <div>
       <Header />
-      {loading ? (
-        <p>Loading comments...</p>
+      <h1>Teacher Classes</h1>
+      {error ? (
+        <p>Error: {error}</p>
       ) : (
-        <div>
-          {comments.length === 0 ? (
-            <p>No comments found for this class.</p>
-          ) : (
-            <div>
-              <h2>Comments for Class</h2>
-              <ul>
-                {comments.map((comment, index) => (
-                  <li key={index}>
-                    <strong>{comment.studentName}</strong> commented on{' '}
-                    <strong>{comment.bookName}</strong>:
-                    <blockquote>{comment.comment}</blockquote>
-                    <p>Date: {formatDate(comment.date)}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+        <>
+          <label htmlFor="class-dropdown">Select a class:</label>
+          <select id="class-dropdown" value={selectedClass} onChange={handleClassChange}>
+            <option value="">--Select a class--</option>
+            {classes.map((teacherClass) => (
+              <option key={teacherClass._id} value={teacherClass._id}>
+                {teacherClass.className}
+              </option>
+            ))}
+          </select>
+        </>
       )}
-      <GoBackButton  />
     </div>
   );
 }
