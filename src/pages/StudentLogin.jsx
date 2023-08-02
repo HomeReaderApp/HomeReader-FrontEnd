@@ -11,7 +11,8 @@ export default function StudentLogin() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/student/login', {
+      const api = process.env.REACT_APP_BACKEND_URL
+      const response = await fetch(`${api}/student/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
