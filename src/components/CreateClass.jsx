@@ -17,8 +17,8 @@ export default function CreateClassForm() {
 
     try {
       const token = getAuthToken(); // Get the authentication token from local storage
-
-      const response = await fetch('http://localhost:3001/create-class', {
+      const api = process.env.REACT_APP_BACKEND_URL
+      const response = await fetch(`${api}/create-class`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
