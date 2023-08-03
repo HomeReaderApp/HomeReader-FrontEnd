@@ -11,7 +11,8 @@ export default function StudentLogin() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/student/login', {
+      const api = process.env.REACT_APP_BACKEND_URL
+      const response = await fetch(`${api}/student/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,6 +34,7 @@ export default function StudentLogin() {
       // Save token to local storage and then decode token to get studentID
       saveAuthToken(token)
       const decoded = decodeAuthToken(token)
+      console.log(decoded)
 
       // Redirect to another page using user_id as param
       navigate(`/student/${decoded.user_id}/reading-form`); 

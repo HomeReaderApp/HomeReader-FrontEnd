@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css'; 
+import LogoutButton from './TeacherLogoutButton';
 
 export default function Header(){
   return (
@@ -23,6 +24,7 @@ export default function Header(){
         <Link to="/teacher/favourite-books">
           <button>Favourite books</button>
         </Link>
+        <LogoutButton />
       </nav>
     </header>
   );

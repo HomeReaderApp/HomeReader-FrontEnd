@@ -9,6 +9,11 @@ export function getAuthToken(){
   return localStorage.getItem('authToken')
 }
 
+// Clear the authentication token from localStorage
+export const clearAuthToken = () => {
+  localStorage.removeItem('authToken');
+};
+
 export function decodeTeacherToken(token){
   const {username, user_id} = jwt_decode(token)
   return {username, user_id}
