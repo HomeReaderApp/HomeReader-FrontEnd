@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import Header from "../components/Header";
 
 
+
 export default function TeacherPortal(props){
     const [username, setUsername] = useState("")
-    // const [user_id, setUser_id] = useState(null);
     
     useEffect(() => {
         // Get the auth token from local storage
@@ -16,7 +16,6 @@ export default function TeacherPortal(props){
           // Decode the token to get the username
           const { username } = decodeTeacherToken(token);
           setUsername(username);
-        //   setUser_id(user_id);
         }
       }, []);
    
