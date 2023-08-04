@@ -5,6 +5,7 @@ import UpdateButton from './UpdateButton';
 import Header from './Header';
 import { FetchTeacherClass } from '../services/ClassServices';
 import { deleteStudent } from '../services/StudentsServices';
+import '../styles/StudentList.css'
 
 export default function StudentList() {
   const { classID } = useParams();
@@ -40,6 +41,8 @@ export default function StudentList() {
   return (
     <div>
       <Header />
+      <div className='portal-container'>
+      <div className="teacher-portal">
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -48,6 +51,8 @@ export default function StudentList() {
             <div>
               <h1>Teacher Class Details</h1>
               <p>Class Name: {teacherClass.className}</p>
+              <div className='student-details'>
+              <div className='students'>
               <p>Students:</p>
               <ul>
                 {teacherClass.students.map((student) => (
@@ -60,6 +65,8 @@ export default function StudentList() {
                   </li>
                 ))}
               </ul>
+              </div>
+              <div className='login-codes'>
               <p>Login Codes:</p>
               <ul>
                 {teacherClass.students.map((student) => (
@@ -68,6 +75,8 @@ export default function StudentList() {
                   </li>
                 ))}
               </ul>
+              </div>
+              </div>
               <Link to={`/teacher/classlist/${classID}/add-student`}>
                 <button>Add Student</button>
               </Link>
@@ -77,6 +86,8 @@ export default function StudentList() {
           )}
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 }

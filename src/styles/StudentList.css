@@ -1,0 +1,44 @@
+.student-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-codes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+.students {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.students ul {
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.students li {
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.login-codes ul {
+    list-style-type: none;
+    font-size: 20px;
+
+}
+
+.students buttons {
+    border-radius: 10%;
+    padding: 5px 10px;
+    margin-left : 20px;
+
+}
