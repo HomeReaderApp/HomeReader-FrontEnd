@@ -14,13 +14,16 @@ export default function Homepage(props){
     }
 
     return(
-        <div>
-            <h1>HomeReader app coming soon...</h1>
+        <div className='body'>
+        <div className='relaxing-container'>
+            <img className='homepage-logo' src={require('../styles/logo.svg').default} alt="Logo" />
+            <h1 className='homepage-title'>HomeReader</h1>
             <p>A place for teachers and parents to communicate and share the successes in home reading</p>
 
-            <button onClick={teacherLogin}>Teacher Login</button>
-            <button onClick={studentLogin}>Student Login</button>
+            <button className='login-button' onClick={teacherLogin}>Teacher Login</button>
+            <button className='login-button' onClick={studentLogin}>Student Login</button>
 
+        </div>
         </div>
     )
 }

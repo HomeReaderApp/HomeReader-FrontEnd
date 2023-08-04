@@ -39,7 +39,8 @@ export default function RegisterTeacherUser() {
   };
 
   return (
-    <div>
+    <div className='body'>
+    <div className='relaxing-container'>
       <h2>Teacher Register</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -73,8 +74,9 @@ export default function RegisterTeacherUser() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Register</button>
+        <button className='login-button' type="submit">Register</button>
       </form>
+    </div>
     </div>
   );
 };

@@ -42,6 +42,7 @@ export default function TeacherLogin(props) {
     };
 
     return (
+        <div className="body">
         <div className="relaxing-container"> 
             <h1>Teacher Login</h1>
             <input
@@ -59,6 +60,7 @@ export default function TeacherLogin(props) {
             <p>New user, register <NavLink to="/teacher/register" className="nav-link">here</NavLink></p> {/* Apply the nav-link class */}
             {error && <p className="error-message">{error}</p>} {/* Apply the error-message class */}
             <button className="login-button" onClick={handleLogin}>Login</button> {/* Apply the login-button class */}
+        </div>
         </div>
     )
 }

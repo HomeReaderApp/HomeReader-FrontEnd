@@ -1,11 +1,11 @@
 /* TeacherLogin.css */
-body {
+.body {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: rgb(196, 193, 186);
 }
 
 .relaxing-container {
@@ -16,6 +16,7 @@ body {
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    
 }
 
 .relaxing-container input {
@@ -43,10 +44,22 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px
 }
 
 .login-button:hover {
     background-color: #45a049;
+}
+
+.homepage-logo {
+     width: 180px;
+    height: 180px;
+    border-radius: 50%;
+
+}
+
+.homepage-title {
+    font-size: 38px;
 }
 
 

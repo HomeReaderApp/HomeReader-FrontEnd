@@ -4,11 +4,11 @@ import CreateClassForm from '../components/CreateClass';
 import { Link } from 'react-router-dom';
 import { FetchTeacherClasses } from '../services/TeacherServices';
 import Header from '../components/Header';
+import '../styles/Classes.css'
 
 export default function TeacherClasses() {
   const [classes, setClasses] = useState([]);
   const [user_id, setUser_id] = useState(null);
-  const [username, setUsername] = useState('')
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,6 @@ export default function TeacherClasses() {
     try {
       const decoded = decodeTeacherToken(token);
       setUser_id(decoded.user_id);
-      setUsername(decoded.username)
     } catch (error) {
       setError('Error decoding the JWT token');
     }
@@ -51,11 +50,9 @@ export default function TeacherClasses() {
   return (
     <div>
       <Header />
-      <h1>Teacher Classes</h1>
-      {user_id && (
-        <p>Welcome, {username}</p>
-      )}
-      <CreateClassForm />
+      <div className='portal-container'>
+        <div className="class-portal">
+      <div className='class-list'>
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -67,6 +64,12 @@ export default function TeacherClasses() {
           ))}
         </ul>
       )}
+    </div>
+    <div className='create-class'>
+    <CreateClassForm />
+    </div>
+    </div>
+    </div>
     </div>
   );
 };
