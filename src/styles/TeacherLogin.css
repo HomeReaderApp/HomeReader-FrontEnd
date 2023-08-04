@@ -9,7 +9,7 @@ body {
 }
 
 .relaxing-container {
-    width: 80%; /* Adjust the width to your preference */
+    width: 80%; 
     max-width: 400px;
     padding: 20px;
     text-align: center;

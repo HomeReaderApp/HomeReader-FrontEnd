@@ -1,30 +1,34 @@
-/* Header.css */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f2f2f2;
-  }
-  
-  .logo img {
-    width: 60px; /* Set the desired width for your round logo */
-    height: 60px; /* Set the desired height for your round logo */
-    border-radius: 50%; /* Makes the logo round */
-  }
-  
-  .navbar {
-    display: flex;
-  }
-  
-  .navbar button {
-    margin-left: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  
+  height: 20vh;
+}
 
-  
+.logo img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  transform: translateY(20%);
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px
+}
+
+
+
+
+
+
+
+/* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); Center the logo */
+ 

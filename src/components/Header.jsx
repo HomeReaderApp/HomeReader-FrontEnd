@@ -9,8 +9,7 @@ export default function Header(){
   return (
     <header className="header">
       <div className="logo">
-        {/* Replace the image URL with your round logo image */}
-        <img src="your-round-logo.png" alt="Logo" />
+        <img src={require('../styles/logo.svg').default} alt="Logo" />
       </div>
       <nav className="navbar">
         <Link to="/teacher/classes">
