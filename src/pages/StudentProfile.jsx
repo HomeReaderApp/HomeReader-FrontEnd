@@ -43,6 +43,9 @@ export default function StudentProfilePage(){
             {studentData.readingData && studentData.readingData.length > 0 ? (
                 <div>
                 <h2>Reading Data</h2>
+                <h3>
+                Total Books Read: {studentData.readingData.length}
+              </h3>
                 <ul>
                     {studentData.readingData.map((readingEntry) => (
                     <li key={readingEntry._id}>

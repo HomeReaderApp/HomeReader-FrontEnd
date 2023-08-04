@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { decodeTeacherToken, getAuthToken } from "../utils/DecodeTokens"
 import { Link } from 'react-router-dom'
 import Header from "../components/Header";
+import '../styles/TeacherPortal.css';
 
 
 
@@ -21,8 +22,9 @@ export default function TeacherPortal(props){
    
 
     return(
-        <div>
+        <div className="container">
             <Header />
+            <div className="teacher-portal">
             <h1>Teacher Portal</h1>
             <h1>Welcome, {username}</h1>
 
@@ -37,7 +39,7 @@ export default function TeacherPortal(props){
             <Link to="/teacher/favourite-books">
                 <button>Favourite books</button>
             </Link>
-
+            </div>
         </div>
     )
 }
