@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { decodeAuthToken } from '../utils/DecodeTokens';
 import { SubmitReadingForm } from '../services/ReadingDataServices';
+import '../styles/ReadingForm.css'
 
 export default function ReadingForm() {
   const navigate = useNavigate();
@@ -50,10 +51,12 @@ export default function ReadingForm() {
 
   return (
     <div>
+      <div className="readingForm-body">
+      <div className="reading-container"> 
       <h1>Welcome {firstName}</h1>
       <h2>Submit Reading Form</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='input-container'>
           <label>Book Name:</label>
           <input
             type="text"
@@ -61,7 +64,7 @@ export default function ReadingForm() {
             onChange={(e) => setBookName(e.target.value)}
           />
         </div>
-        <div>
+        <div className='input-container'>
           <label>Rating:</label>
           <input
             type="number"
@@ -69,16 +72,18 @@ export default function ReadingForm() {
             onChange={(e) => setRating(e.target.value)}
           />
         </div>
-        <div>
+        <div className='input-container'>
           <label>Comments:</label>
           <textarea
             value={comments}
             onChange={(e) => setComments(e.target.value)}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button className='create-button' type="submit">Submit</button>
       </form>
       {submissionMessage && <p>{submissionMessage}</p>}
+    </div>
+    </div>
     </div>
   );
 }

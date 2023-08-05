@@ -3,6 +3,7 @@ import { decodeTeacherToken, getAuthToken } from '../utils/DecodeTokens';
 import { useNavigate } from 'react-router-dom';
 import { FetchTeacherClasses } from '../services/TeacherServices';
 import Header from '../components/Header';
+import '../styles/Comments.css'
 
 export default function ClassDropdown() {
   const [classes, setClasses] = useState([]);
@@ -66,7 +67,11 @@ export default function ClassDropdown() {
   return (
     <div>
       <Header />
+      <div className='portal-container'>
+      <div className="class-portal">
+      <div className='comments-container'>
       <h1>Teacher Classes</h1>
+      <div>
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -82,6 +87,10 @@ export default function ClassDropdown() {
           </select>
         </>
       )}
+      </div>
+      </div>
+    </div>
+    </div>
     </div>
   );
 }

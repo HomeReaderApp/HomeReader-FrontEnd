@@ -48,13 +48,11 @@ export default function CreateClassForm() {
 
   return (
     <div>
-      <h1>Create Class</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Class Name:</label>
-          <input type="text" value={className} onChange={handleChange} />
+          <input className='class-input' type="text" placeholder='Type class name here...' value={className} onChange={handleChange} />
         </div>
-        <button type="submit">Create Class</button>
+        <button className='create-button' type="submit">Create Class</button>
       </form>
       {error && <p>{error}</p>}
       {success && <p>Class created successfully!</p>}

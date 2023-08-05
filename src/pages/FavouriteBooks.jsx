@@ -58,6 +58,8 @@ const fetchClasses = async () => {
   return (
     <div>
       <Header />
+      <div className='portal-container'>
+      <div className='teacher-portal'>
       <h1>Teacher Classes</h1>
       {error ? (
         <p>Error: {error}</p>
@@ -74,6 +76,8 @@ const fetchClasses = async () => {
           </select>
         </>
       )}
+    </div>
+    </div>
     </div>
   );
 }

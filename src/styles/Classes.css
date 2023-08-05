@@ -1,0 +1,47 @@
+
+.class-portal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+.class-list {
+    margin-right: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.class-list ul {
+    list-style-type: none;
+    font-size: 30px;
+}
+
+
+.create-class {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+.create-button {
+    background-color: rgb(111, 133, 111);
+    color: white;
+    padding: 12px 24px; /* Adjust the padding to make the button bigger */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 15px
+}
+
+.class-input {
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+

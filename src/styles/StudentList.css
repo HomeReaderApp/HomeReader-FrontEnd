@@ -1,0 +1,36 @@
+
+.teacher-details {
+    display: flex;
+    align-items: center;
+  }
+  
+  .teacher-details .name {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .teacher-details .login-code {
+    margin-right: 10px;
+  }
+  
+  .teacher-details .student-buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  .student-list li {
+    list-style-type: none;
+    color: black;
+  }
+
+
+
+  .button {
+    padding: 5px 10px;
+    margin-right: 15px;
+    margin-top: 5px;
+    background-color: silver;
+    border-radius: 7%;
+  }
+  
+

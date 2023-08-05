@@ -58,7 +58,9 @@ export default function CreateStudentForm() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <div className="body">
+        <div className="relaxing-container"> 
       <h1>Create Student</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -77,9 +79,11 @@ export default function CreateStudentForm() {
           <label>Login Code:</label>
           <input type="text" name="loginCode" value={loginCode} onChange={handleChange} />
         </div>
-        <button type="submit">Create Student</button>
+        <button className='create-button' type="submit">Create Student</button>
       </form>
       {error && <p>{error}</p>}
+    </div>
+    </div>
     </div>
   );
 }

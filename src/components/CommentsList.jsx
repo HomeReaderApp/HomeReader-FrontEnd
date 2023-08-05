@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FetchComments } from '../services/ReadingDataServices';
 import Header from './Header';
+// import '../styles/Comments.css'
 
 export default function Comments() {
   const { classId } = useParams();
@@ -32,6 +33,8 @@ export default function Comments() {
   return (
     <div>
       <Header />
+      <div className='portal-container'>
+      <div className='teacher-portal'>
       {loading ? (
         <p>Loading comments...</p>
       ) : (
@@ -39,11 +42,11 @@ export default function Comments() {
           {comments.length === 0 ? (
             <p>No comments found for this class.</p>
           ) : (
-            <div>
+            <div className='comments-portal'>
               <h2>Comments for Class</h2>
-              <ul>
+              <ul className='card-container'>
                 {comments.map((comment, index) => (
-                  <li key={index}>
+                  <li className='comments-card' key={index}>
                     <strong>{comment.studentName}</strong> commented on{' '}
                     <strong>{comment.bookName}</strong>:
                     <blockquote>{comment.comment}</blockquote>
@@ -55,6 +58,8 @@ export default function Comments() {
           )}
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 }

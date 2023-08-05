@@ -1,11 +1,11 @@
 /* TeacherLogin.css */
-body {
+.body {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: rgb(111, 133, 111) ;
 }
 
 .relaxing-container {
@@ -13,22 +13,24 @@ body {
     max-width: 400px;
     padding: 20px;
     text-align: center;
-    background-color: #ffffff;
+    background-color: rgb(209, 203, 171);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
 .relaxing-container input {
     width: 100%;
-    padding: 12px; /* Adding padding to the inputs */
-    margin-bottom: 15px; /* Increasing spacing between inputs */
+    padding:12px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px; 
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Add box-sizing to include padding in the width */
-}
+    box-sizing: border-box; 
+} 
 
 .nav-link {
-    color: blue;
+    color: black;
     text-decoration: underline;
 }
 
@@ -37,16 +39,34 @@ body {
 }
 
 .login-button {
-    background-color: #4CAF50;
+    background-color: rgb(111, 133, 111);
     color: white;
     padding: 12px 24px; /* Adjust the padding to make the button bigger */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .login-button:hover {
     background-color: #45a049;
+}
+
+.homepage-logo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+
+}
+
+.homepage-title {
+    font-size: 38px;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: row;
 }
 
 

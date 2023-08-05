@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FetchTeacherClass } from '../services/ClassServices';
 import Header from './Header';
 
+
 export default function StudentDropdown() {
   const { classID } = useParams();
   const [teacherClass, setTeacherClass] = useState(null);
@@ -34,6 +35,8 @@ export default function StudentDropdown() {
   return (
     <div>
       <Header />
+      <div className='portal-container'>
+        <div className="teacher-portal">
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -57,6 +60,8 @@ export default function StudentDropdown() {
           )}
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 }

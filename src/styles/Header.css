@@ -1,34 +1,38 @@
-.header {
-  height: 20vh;
-}
 
-.logo img{
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+.header {
+  height: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color:  rgb(111, 133, 111);
 }
 
 .logo {
-  display: flex;
-  justify-content: center;
-  transform: translateY(20%);
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.logo img{
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
 }
 
 .navbar {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 10px
+  align-items: flex-end;
+}
+
+.navbar button {
+  border-radius: 8%;
+  padding: 10px 20px;
+  margin-right: 10px;
+  margin-top: 100px;
+  background-color: silver;
+  
 }
 
 
 
-
-
-
-
-/* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); Center the logo */
  

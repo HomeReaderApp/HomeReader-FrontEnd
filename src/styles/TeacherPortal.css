@@ -1,56 +1,45 @@
-.teacher-portal {
-    text-align: center;
-    background-color: #a3926e;
-    margin: 0;
-    height: 80vh;
-    width: 100vw;
-  }
-  
-  .teacher-portal h1 {
-    margin-bottom: 20px;
-  }
-  
-  .teacher-portal button {
-    display: inline-block;
-    margin: 10px;
-    width: 150px; 
-    height: 150px; 
-    border-radius: 30; 
-    font-size: 16px;
-    background-color: #688b65;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .teacher-portal button:hover {
-    background-color: #2a7a37;
-  }
-  
-  /* Style for mobile */
-  @media screen and (max-width: 767px) {
-    .teacher-portal button {
-      display: block;
-      margin: 10px auto;
-      width: 200px; 
-      height: 200px; 
-    }
-  }
-  
-  
-  .container button:hover {
-    background-color: #86c7a7;
-  }
-  
-  /* Style for mobile */
-  @media screen and (max-width: 767px) {
-    .container button {
-      display: block;
-      margin: 10px auto;
-    }
-  }
-  
-  
 
+  .teacher-portal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .portal-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: rgb(150, 136, 100);
+}
+
+.portal-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.portal-title {
+  font-size: 50px;
+  margin: 5px;
+}
+
+.portal-buttons {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.portal-buttons button {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+  border-radius: 10%;
+  background-color: rgb(111, 133, 111);
+  font-size: 20px;
+}
+  
   

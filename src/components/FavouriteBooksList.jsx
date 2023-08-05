@@ -28,6 +28,8 @@ export default function FavouriteBooksList(){
   return (
     <div>
       <Header />
+      <div className='portal-container'>
+      <div className='teacher-portal'>
       {loading ? (
         <p>Loading favourite books...</p>
       ) : (
@@ -48,6 +50,8 @@ export default function FavouriteBooksList(){
           )}
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 }

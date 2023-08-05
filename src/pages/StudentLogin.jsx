@@ -45,7 +45,8 @@ export default function StudentLogin() {
   };
 
   return (
-    <div>
+    <div className='readingForm-body'>
+    <div className='reading-container'>
       <h1>Student Login</h1>
       <form onSubmit={handleLogin}>
         <label>Login Code:</label>
@@ -62,8 +63,10 @@ export default function StudentLogin() {
           value={studentLastName}
           onChange={(event) => setStudentLastName(event.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className='create-button'>Login</button>
       </form>
     </div>
+    </div>
+
   );
 }
