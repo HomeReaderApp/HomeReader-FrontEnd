@@ -29,7 +29,7 @@
   }
   
   .reading-container form {
-    width: 300px; /* Set the width of the form */
+    width: 300px; 
   }
   
   .input-container {
@@ -43,7 +43,7 @@
   }
   
   .reading-container textarea {
-    resize: vertical; /* Allow vertical resizing of the textarea */
+    resize: vertical; 
   }
   
   

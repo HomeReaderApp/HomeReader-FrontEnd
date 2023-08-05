@@ -13,12 +13,6 @@
     background-color: rgb(150, 136, 100);
 }
 
-/* .student-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-} */
-
 .student-details p {
     margin-top: -10px;
 }
