@@ -1,2 +1,24 @@
+.comments-container {
+    display: flex;
+    flex-direction: column;
+}
 
+/* .class-dropdown select {
+    padding: 20px;
+    background-color: silver;
+    border: none;
+    border-radius: 5px;
+  } */
   
+  .comments-portal h2 {
+    text-align: center;
+  }
+  .comments-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    flex: 1 0 calc(33.33% - 20px); /* Adjust the width as per your design */
+    max-width: calc(33.33% - 20px); /* Ensure cards take up 33.33% of the container */
+    box-sizing: border-box;
+  }

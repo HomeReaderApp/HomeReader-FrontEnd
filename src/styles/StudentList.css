@@ -1,44 +1,36 @@
-.student-details {
+
+.teacher-details {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
-}
-
-.login-codes {
+  }
+  
+  .teacher-details .name {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .teacher-details .login-code {
+    margin-right: 10px;
+  }
+  
+  .teacher-details .student-buttons {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
+  }
 
-}
-
-.students {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.students ul {
+  .student-list li {
     list-style-type: none;
-    font-size: 20px;
-}
+    color: black;
+  }
 
-.students li {
-    margin-right: 20px;
-    padding: 20px;
-}
 
-.login-codes ul {
-    list-style-type: none;
-    font-size: 20px;
 
-}
-
-.students buttons {
-    border-radius: 10%;
+  .button {
     padding: 5px 10px;
-    margin-left : 20px;
+    margin-right: 15px;
+    margin-top: 5px;
+    background-color: silver;
+    border-radius: 7%;
+  }
+  
 
-}

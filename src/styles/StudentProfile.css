@@ -1,0 +1,47 @@
+/* Add this CSS to your existing styles or create a new CSS file */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .profile-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto;
+    background-color: rgb(150, 136, 100);
+}
+
+/* .student-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+} */
+
+.student-details p {
+    margin-top: -10px;
+}
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    flex: 1 0 calc(33.33% - 20px); /* Adjust the width as per your design */
+    max-width: calc(33.33% - 20px); /* Ensure cards take up 33.33% of the container */
+    box-sizing: border-box;
+  }
+  
+  .card p {
+    margin: 0;
+  }
+  
+  .card h2 {
+    margin-bottom: 5px;
+  }
+
+  .card-container li {
+    list-style-type: none;
+  }
+  

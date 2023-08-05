@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FetchStudentData } from '../services/StudentsServices';
+import Header from '../components/Header';
+import '../styles/StudentProfile.css'
 
 
 export default function StudentProfilePage(){
@@ -30,31 +32,38 @@ export default function StudentProfilePage(){
 
     return (
         <div>
+        <Header />
+        <div className='profile-container'>
+        <div className="teacher-portal">
         {loading ? (
             <p>Loading...</p>
         ) : (
             <>
             <h1>Student Details</h1>
-            <p>First Name: {studentData.firstName}</p>
-            <p>Last Name: {studentData.lastName}</p>
-            <p>Year Level: {studentData.yearLevel}</p>
-            <p>Login Code: {studentData.loginCode}</p>
+            <div className='student-details' >
+                <p>First Name: {studentData.firstName}</p>
+                <p>Last Name: {studentData.lastName}</p>
+                <p>Year Level: {studentData.yearLevel}</p>
+                <p>Login Code: {studentData.loginCode}</p>
+            </div>
 
             {studentData.readingData && studentData.readingData.length > 0 ? (
-                <div>
+                <div className='reading-details'>
                 <h2>Reading Data</h2>
                 <h3>
                 Total Books Read: {studentData.readingData.length}
               </h3>
                 <ul>
+                    <div className='card-container'>
                     {studentData.readingData.map((readingEntry) => (
-                    <li key={readingEntry._id}>
+                    <li className='card' key={readingEntry._id}>
                         <p>Book Name: {readingEntry.bookName}</p>
                         <p>Rating: {readingEntry.rating}</p>
                         <p>Comments: {readingEntry.comments}</p>
                         <p>Date: {formatDateString(readingEntry.date)}</p>
                     </li>
                     ))}
+                    </div>
                 </ul>
                 </div>
             ) : (
@@ -62,6 +71,8 @@ export default function StudentProfilePage(){
             )}
             </>
         )}
+        </div>
+        </div>
         </div>
     );
     };

@@ -9,6 +9,6 @@ export default function UpdateButton({ studentID, classID }) {
   };
 
   return (
-    <button onClick={handleUpdate}>Update</button>
+    <button className='button' onClick={handleUpdate}>Update</button>
   );
 }

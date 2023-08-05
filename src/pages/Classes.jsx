@@ -51,7 +51,7 @@ export default function TeacherClasses() {
     <div>
       <Header />
       <div className='portal-container'>
-        <div className="class-portal">
+      <div className="class-portal">
       <div className='class-list'>
       {error ? (
         <p>Error: {error}</p>
