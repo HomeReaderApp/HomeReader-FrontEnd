@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: auto;
+    height: 100vh;
     background-color: rgb(150, 136, 100);
 }
 
