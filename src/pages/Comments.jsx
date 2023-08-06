@@ -76,8 +76,7 @@ export default function ClassDropdown() {
         <p>Error: {error}</p>
       ) : (
         <>
-          <label htmlFor="class-dropdown">Select a class:</label>
-          <select id="class-dropdown" value={selectedClass} onChange={handleClassChange}>
+          <select id="class-dropdown" className="nice-dropdown" value={selectedClass} onChange={handleClassChange}>
             <option value="">--Select a class--</option>
             {classes.map((teacherClass) => (
               <option key={teacherClass._id} value={teacherClass._id}>
