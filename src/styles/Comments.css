@@ -22,3 +22,11 @@
     max-width: calc(33.33% - 20px); 
     box-sizing: border-box;
   }
+
+  /* Mobile-friendly styles */
+@media (max-width: 768px) {
+  .comments-card {
+    flex: 1 0 calc(100% - 20px); 
+    max-width: calc(100% - 20px); 
+  }
+}

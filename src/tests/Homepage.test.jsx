@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
 describe('Homepage', () => {
   it('renders the component with correct text', () => {
     render(<Homepage />);
-    const headingElement = screen.getByText('HomeReader app coming soon...');
+    const headingElement = screen.getByText('HomeReader');
     const paragraphElement = screen.getByText('A place for teachers and parents to communicate and share the successes in home reading');
     const teacherLoginButton = screen.getByText('Teacher Login');
     const studentLoginButton = screen.getByText('Student Login');

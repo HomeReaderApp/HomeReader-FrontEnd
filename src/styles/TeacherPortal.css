@@ -1,18 +1,19 @@
 
-  .teacher-portal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.teacher-portal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .portal-container {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    background-color: rgb(150, 136, 100);
+.portal-container {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  min-height: 100vh;
+  background-color: rgb(150, 136, 100);
 }
 
 .portal-info {
@@ -23,23 +24,35 @@
 }
 
 .portal-title {
-  font-size: 50px;
-  margin: 5px;
+  font-size: 36px;
+  margin: 10px;
 }
 
 .portal-buttons {
   display: flex;
   flex-direction: row;
-
 }
 
 .portal-buttons button {
-  width: 150px;
-  height: 150px;
-  margin-right: 20px;
+  width: 120px;
+  height: 120px;
+  margin-right: 10px;
   border-radius: 10%;
   background-color: rgb(111, 133, 111);
-  font-size: 20px;
+  font-size: 18px;
 }
-  
-  
+
+/* Mobile-friendly styles */
+@media (max-width: 768px) {
+  .portal-title {
+    font-size: 24px;
+  }
+
+  .portal-buttons button {
+    width: 90px;
+    height: 90px;
+    margin-right: 5px;
+    font-size: 16px;
+  }
+}
+

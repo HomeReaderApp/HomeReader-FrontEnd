@@ -36,5 +36,5 @@ describe('TeacherLogin', () => {
     global.fetch.mockRestore();
   });
 
-  // You can add more tests to cover other functionalities of the component.
+
 });

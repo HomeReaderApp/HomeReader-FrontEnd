@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color:  rgb(111, 133, 111);
+  background-color: rgb(111, 133, 111);
 }
 
 .logo {
@@ -13,7 +13,7 @@
   margin-left: 50px;
 }
 
-.logo img{
+.logo img {
   width: 180px;
   height: 180px;
   border-radius: 50%;
@@ -30,7 +30,36 @@
   margin-right: 10px;
   margin-top: 100px;
   background-color: silver;
-  
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 768px) {
+  header {
+    height: 120px; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo {
+    margin: 10px 0; /* Center the logo vertically and remove left margin */
+  }
+
+  .logo img {
+    width: 100px; 
+    height: 100px;
+  }
+
+  .navbar {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    margin-top: 10px;
+  }
+
+  .navbar button {
+    padding: 8px 16px;
+    margin: 5px; 
+  }
 }
 
 
